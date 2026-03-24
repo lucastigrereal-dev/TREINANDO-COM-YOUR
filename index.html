@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Your Vacation | Treinamento</title>
+    <style>
+        :root{--gold:#D4AF37;--gold-light:#F4E4BC;--gold-dark:#B8960C;--black:#0D0D0D;--black-light:#1A1A1A;--black-lighter:#2D2D2D;--white:#FAFAFA;--gray:#888;--gray-light:#CCC;--success:#2ECC71;--warning:#F39C12;--danger:#E74C3C;--info:#3498DB}
+        *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none}
+        html{-webkit-text-size-adjust:100%}
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--black);color:var(--white);line-height:1.7;overflow-x:hidden;min-height:100vh;min-height:-webkit-fill-available}
+        .progress-global{position:fixed;top:0;left:0;right:0;height:4px;background:var(--black-lighter);z-index:1001}
+        .progress-global-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));width:0%;transition:width .3s}
+        .sidebar{position:fixed;left:0;top:0;width:280px;height:100%;height:100vh;background:linear-gradient(180deg,var(--black),var(--black-light));border-right:1px solid var(--black-lighter);overflow-y:auto;z-index:1000;transform:translateX(-100%);transition:transform .3s ease;-webkit-overflow-scrolling:touch}
+        .sidebar.open{transform:translateX(0)}
+        .sidebar-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.7);z-index:999;display:none;opacity:0;transition:opacity .3s}
+        .sidebar-overlay.active{display:block;opacity:1}
+        .sidebar-header{padding:20px;border-bottom:1px solid var(--black-lighter);text-align:center}
+        .logo{color:var(--gold);font-size:20px;font-weight:700;letter-spacing:2px}
+        .logo span{display:block;font-size:9px;letter-spacing:3px;margin-top:4px}
+        .search-box{padding:12px}
+        .search-input{width:100%;padding:12px;background:var(--black);border:1px solid var(--black-lighter);border-radius:6px;color:var(--white);font-size:16px}
+        .search-input:focus{outline:none;border-color:var(--gold)}
+        .search-results{display:none;padding:8px;background:var(--black);max-height:200px;overflow-y:auto}
+        .search-results.active{display:block}
+        .search-result-item{padding:12px;border-radius:4px;font-size:14px;color:var(--gray-light)}
+        .stats-bar{padding:10px 16px;border-bottom:1px solid var(--black-lighter);display:flex;justify-content:space-between;font-size:11px;color:var(--gray)}
+        .nav-section{padding:8px 0}
+        .nav-title{padding:6px 16px;font-size:9px;text-transform:uppercase;letter-spacing:2px;color:var(--gray)}
+        .nav-item{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;color:var(--gray-light);font-size:14px;cursor:pointer;border-left:3px solid transparent}
+        .nav-item.active{background:rgba(212,175,55,.1);color:var(--gold);border-left-color:var(--gold)}
+        .nav-item .fav-star{opacity:.5;font-size:16px;padding:4px}
+        .nav-item .fav-star.active{opacity:1;color:var(--gold)}
+        .favorites-section{display:none;padding:8px 0;border-bottom:1px solid var(--black-lighter)}
+        .favorites-section.has-favorites{display:block}
+        .main{margin-left:0;padding:16px;padding-top:16px;padding-bottom:100px}
+        h1{font-size:24px;color:var(--gold);margin-bottom:12px}
+        h2{font-size:18px;color:var(--white);margin:24px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--black-lighter)}
+        h3{font-size:16px;color:var(--gold);margin:18px 0 10px}
+        h4{font-size:14px;color:var(--white);margin:14px 0 8px}
+        p{margin-bottom:10px;color:var(--gray-light);font-size:14px}
+        .lead{font-size:15px;color:var(--white);margin-bottom:16px}
+        ul{margin:10px 0;padding-left:18px}
+        li{margin-bottom:6px;color:var(--gray-light);font-size:13px}
+        li strong{color:var(--white)}
+        .badge{display:inline-block;padding:4px 8px;border-radius:4px;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+        .badge-gold{background:var(--gold);color:var(--black)}
+        .badge-consultor{background:var(--info);color:var(--white)}
+        .badge-fechador{background:var(--success);color:var(--white)}
+        .card{background:var(--black-light);border:1px solid var(--black-lighter);border-radius:10px;padding:14px;margin-bottom:14px}
+        .card-gold{border-color:var(--gold-dark);background:linear-gradient(135deg,rgba(212,175,55,.1),var(--black))}
+        .alert{padding:12px;border-radius:8px;margin-bottom:14px;display:flex;gap:8px;align-items:flex-start;font-size:13px}
+        .alert-icon{font-size:14px;flex-shrink:0}
+        .alert-gold{background:rgba(212,175,55,.15);border-left:4px solid var(--gold)}
+        .alert-danger{background:rgba(231,76,60,.15);border-left:4px solid var(--danger)}
+        .alert-success{background:rgba(46,204,113,.15);border-left:4px solid var(--success)}
+        .alert-info{background:rgba(52,152,219,.15);border-left:4px solid var(--info)}
+        .script-box{background:var(--black);border:1px solid var(--gold-dark);border-radius:8px;padding:14px;padding-top:18px;margin:14px 0;position:relative}
+        .script-box::before{content:'💬 SCRIPT';position:absolute;top:-9px;left:10px;background:var(--black);padding:0 6px;font-size:8px;letter-spacing:1px;color:var(--gold)}
+        .script-box p{color:var(--white);font-style:italic;margin:0;font-size:13px;line-height:1.5}
+        .copy-btn{position:absolute;top:4px;right:4px;background:var(--gold);border:none;color:var(--black);padding:8px 12px;border-radius:4px;font-size:11px;font-weight:600}
+        .copy-btn.copied{background:var(--success);color:var(--white)}
+        .comparison{display:grid;grid-template-columns:1fr;gap:10px;margin:14px 0}
+        .comparison-bad{background:rgba(231,76,60,.1);border:1px solid rgba(231,76,60,.3);border-radius:8px;padding:12px}
+        .comparison-good{background:rgba(46,204,113,.1);border:1px solid rgba(46,204,113,.3);border-radius:8px;padding:12px}
+        .comp-title{font-size:10px;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;display:flex;align-items:center;gap:4px}
+        .comparison-bad .comp-title{color:var(--danger)}
+        .comparison-good .comp-title{color:var(--success)}
+        .accordion{margin:14px 0}
+        .acc-item{border:1px solid var(--black-lighter);border-radius:8px;margin-bottom:6px;overflow:hidden}
+        .acc-header{background:var(--black-light);padding:12px 14px;display:flex;justify-content:space-between;align-items:center}
+        .acc-header h4{margin:0;font-size:13px}
+        .acc-icon{font-size:11px}
+        .acc-item.open .acc-icon{transform:rotate(180deg)}
+        .acc-content{display:none;padding:14px;background:var(--black)}
+        .acc-item.open .acc-content{display:block}
+        .timeline{position:relative;padding-left:24px;margin:16px 0}
+        .timeline::before{content:'';position:absolute;left:7px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--gold),var(--black-lighter))}
+        .tl-item{position:relative;margin-bottom:16px}
+        .tl-item::before{content:'';position:absolute;left:-20px;top:4px;width:8px;height:8px;background:var(--gold);border-radius:50%;border:2px solid var(--black)}
+        .tl-title{font-size:13px;font-weight:600;color:var(--white);margin-bottom:2px}
+        .tl-desc{color:var(--gray-light);font-size:12px}
+        .flashcard{perspective:1000px;height:130px;margin:10px 0}
+        .fc-inner{position:relative;width:100%;height:100%;transition:transform .6s;transform-style:preserve-3d}
+        .flashcard.flipped .fc-inner{transform:rotateY(180deg)}
+        .fc-front,.fc-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:10px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:14px;text-align:center}
+        .fc-front{background:linear-gradient(135deg,var(--black-light),var(--black-lighter));border:1px solid var(--black-lighter)}
+        .fc-back{background:linear-gradient(135deg,rgba(212,175,55,.2),var(--black-light));border:1px solid var(--gold-dark);transform:rotateY(180deg)}
+        .fc-label{font-size:8px;text-transform:uppercase;letter-spacing:2px;margin-bottom:6px}
+        .fc-front .fc-label{color:var(--info)}
+        .fc-back .fc-label{color:var(--gold)}
+        .fc-text{font-size:13px;color:var(--white)}
+        .fc-hint{position:absolute;bottom:6px;font-size:9px;color:var(--gray)}
+        .checklist{margin:14px 0}
+        .check-item{display:flex;align-items:center;gap:10px;padding:12px;background:var(--black-light);border-radius:6px;margin-bottom:6px;font-size:13px}
+        .check-item.checked{background:rgba(46,204,113,.1)}
+        .check-box{width:20px;height:20px;border:2px solid var(--gray);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .check-item.checked .check-box{background:var(--success);border-color:var(--success)}
+        .check-item.checked .check-box::after{content:'✓';color:var(--white);font-size:12px}
+        .obj-box{background:var(--black-light);border-radius:10px;overflow:hidden;margin:10px 0}
+        .obj-header{background:rgba(231,76,60,.2);padding:12px 14px;display:flex;align-items:center;gap:6px}
+        .obj-header span:first-child{font-size:14px}
+        .obj-header strong{color:var(--danger);font-size:13px}
+        .obj-resp{display:none;padding:14px}
+        .obj-box.open .obj-resp{display:block}
+        .obj-label{font-size:8px;text-transform:uppercase;letter-spacing:1px;color:var(--success);margin-bottom:4px}
+        .obj-resp p{font-size:13px}
+        .calculator{background:var(--black-light);border:1px solid var(--black-lighter);border-radius:10px;padding:16px;margin:14px 0}
+        .calc-title{font-size:14px;color:var(--gold);margin-bottom:12px}
+        .calc-row{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:10px}
+        .calc-field label{display:block;font-size:12px;color:var(--gray-light);margin-bottom:4px}
+        .calc-field input{width:100%;padding:12px;background:var(--black);border:1px solid var(--black-lighter);border-radius:6px;color:var(--white);font-size:16px}
+        .calc-result{background:var(--gold);color:var(--black);border-radius:8px;padding:14px;text-align:center;margin-top:8px}
+        .calc-result-label{font-size:11px;text-transform:uppercase;letter-spacing:1px}
+        .calc-result-value{font-size:24px;font-weight:700}
+        .section-progress{height:3px;background:var(--black-lighter);border-radius:2px;margin-bottom:16px;overflow:hidden}
+        .section-progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));width:0}
+        .quiz-card{background:var(--black-light);border:1px solid var(--black-lighter);border-radius:10px;padding:16px}
+        .quiz-question{font-size:15px;color:var(--white);margin-bottom:6px}
+        .quiz-hint{font-size:11px;color:var(--gray);margin-bottom:12px}
+        .quiz-opt{padding:14px;background:var(--black);border:1px solid var(--black-lighter);border-radius:8px;margin-bottom:8px;font-size:13px}
+        .quiz-opt.correct{background:rgba(46,204,113,.2);border-color:var(--success)}
+        .quiz-opt.wrong{background:rgba(231,76,60,.2);border-color:var(--danger)}
+        .quiz-counter{text-align:center;color:var(--gray);font-size:11px;margin-top:12px}
+        .quiz-score{background:var(--gold);color:var(--black);padding:16px;border-radius:8px;text-align:center;margin-top:12px;display:none}
+        .quiz-score h3{color:var(--black);margin:0 0 6px 0}
+        .tabs{display:flex;gap:4px;margin-bottom:12px;border-bottom:1px solid var(--black-lighter);padding-bottom:4px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+        .tab-btn{padding:8px 12px;background:transparent;border:none;color:var(--gray);font-size:12px;border-radius:4px 4px 0 0;white-space:nowrap}
+        .tab-btn.active{color:var(--gold);background:var(--black-lighter)}
+        .tab-content{display:none}
+        .tab-content.active{display:block}
+        .notes-box{background:var(--black-light);border:1px solid var(--black-lighter);border-radius:8px;padding:14px;margin:14px 0}
+        .notes-title{font-size:13px;color:var(--gold);margin-bottom:6px;display:flex;align-items:center;gap:4px}
+        .notes-textarea{width:100%;min-height:80px;background:var(--black);border:1px solid var(--black-lighter);border-radius:6px;padding:10px;color:var(--white);font-size:16px;resize:vertical;-webkit-appearance:none}
+        .notes-textarea:focus{outline:none;border-color:var(--gold)}
+        .notes-saved{font-size:10px;color:var(--success);margin-top:4px;opacity:0}
+        .notes-saved.show{opacity:1}
+        .section{display:none}
+        .section.active{display:block}
+        .btn{background:var(--gold);color:var(--black);border:none;padding:14px 18px;border-radius:6px;font-weight:600;font-size:14px;margin-top:8px;width:100%;-webkit-appearance:none}
+        .btn-outline{background:transparent;border:1px solid var(--black-lighter);color:var(--gray)}
+        .toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--black-light);border:1px solid var(--gold);color:var(--white);padding:10px 20px;border-radius:8px;font-size:13px;z-index:1002;opacity:0;transition:all .3s;white-space:nowrap}
+        .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+        #menuToggle{position:fixed;bottom:20px;right:20px;width:60px;height:60px;background:var(--gold);border:none;border-radius:50%;z-index:1001;font-size:24px;box-shadow:0 4px 20px rgba(212,175,55,.5);display:flex;align-items:center;justify-content:center;-webkit-appearance:none;touch-action:manipulation}
+        @media(min-width:901px){.sidebar{transform:translateX(0)}.sidebar-overlay{display:none!important}.main{margin-left:280px;padding:40px;max-width:900px}#menuToggle{display:none}.progress-global{left:280px}.comparison,.calc-row{grid-template-columns:1fr 1fr}h1{font-size:32px}}
+    </style>
+</head>
+<body>
+<div class="progress-global"><div class="progress-global-fill" id="progressGlobal"></div></div>
+<div class="toast" id="toast"></div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<nav class="sidebar" id="sidebar">
+    <div class="sidebar-header"><div class="logo">YOUR VACATION<span>Academia de Vendas</span></div></div>
+    <div class="search-box"><input type="text" class="search-input" id="searchInput" placeholder="🔍 Buscar..."></div>
+    <div class="search-results" id="searchResults"></div>
+    <div class="stats-bar"><span>📊 <span id="progressPercent">0</span>%</span><span>⭐ <span id="favCount">0</span></span></div>
+    <div class="favorites-section" id="favoritesSection"><div class="nav-title">⭐ Favoritos</div><div id="favoritesList"></div></div>
+    <div class="nav-section"><div class="nav-title">Início</div><div class="nav-item active" data-section="intro"><span>🏠 Introdução</span><span class="fav-star" data-fav="intro">☆</span></div><div class="nav-item" data-section="mentalidade"><span>🧠 Mentalidade</span><span class="fav-star" data-fav="mentalidade">☆</span></div></div>
+    <div class="nav-section"><div class="nav-title">Consultor</div><div class="nav-item" data-section="abertura"><span>🎯 Abertura</span><span class="fav-star" data-fav="abertura">☆</span></div><div class="nav-item" data-section="ativacao"><span>💡 Ativação</span><span class="fav-star" data-fav="ativacao">☆</span></div><div class="nav-item" data-section="warmup"><span>🔥 Warm-up</span><span class="fav-star" data-fav="warmup">☆</span></div><div class="nav-item" data-section="credibilidade"><span>🏆 Credibilidade</span><span class="fav-star" data-fav="credibilidade">☆</span></div><div class="nav-item" data-section="conceito"><span>💎 Conceito</span><span class="fav-star" data-fav="conceito">☆</span></div><div class="nav-item" data-section="logica"><span>📊 Lógica</span><span class="fav-star" data-fav="logica">☆</span></div><div class="nav-item" data-section="pacto"><span>🤝 Pacto</span><span class="fav-star" data-fav="pacto">☆</span></div><div class="nav-item" data-section="mesa"><span>🪑 Mesa & Passagem</span><span class="fav-star" data-fav="mesa">☆</span></div></div>
+    <div class="nav-section"><div class="nav-title">Fechador</div><div class="nav-item" data-section="agradecimento"><span>👋 Agradecimento</span><span class="fav-star" data-fav="agradecimento">☆</span></div><div class="nav-item" data-section="duvidas"><span>❓ Dúvidas</span><span class="fav-star" data-fav="duvidas">☆</span></div><div class="nav-item" data-section="tabela"><span>💰 Tabela</span><span class="fav-star" data-fav="tabela">☆</span></div><div class="nav-item" data-section="promocao"><span>🎁 Promoção</span><span class="fav-star" data-fav="promocao">☆</span></div><div class="nav-item" data-section="finalizacao"><span>✅ Finalização</span><span class="fav-star" data-fav="finalizacao">☆</span></div></div>
+    <div class="nav-section"><div class="nav-title">Técnicas</div><div class="nav-item" data-section="rapport"><span>❤️ Rapport</span><span class="fav-star" data-fav="rapport">☆</span></div><div class="nav-item" data-section="minisim"><span>✓ Mini Sim</span><span class="fav-star" data-fav="minisim">☆</span></div><div class="nav-item" data-section="perguntavenda"><span>🔄 Pergunta+Venda</span><span class="fav-star" data-fav="perguntavenda">☆</span></div><div class="nav-item" data-section="objecoes"><span>🛡️ Objeções</span><span class="fav-star" data-fav="objecoes">☆</span></div><div class="nav-item" data-section="arsenal"><span>🗃️ Arsenal</span><span class="fav-star" data-fav="arsenal">☆</span></div></div>
+    <div class="nav-section"><div class="nav-title">Ferramentas</div><div class="nav-item" data-section="calculadora"><span>🧮 Calculadora</span><span class="fav-star" data-fav="calculadora">☆</span></div><div class="nav-item" data-section="treino"><span>🎮 Quiz</span><span class="fav-star" data-fav="treino">☆</span></div><div class="nav-item" data-section="checklist"><span>📋 Checklist</span><span class="fav-star" data-fav="checklist">☆</span></div><div class="nav-item" data-section="notas"><span>📝 Notas</span><span class="fav-star" data-fav="notas">☆</span></div></div>
+</nav>
+<button type="button" id="menuToggle">☰</button>
+<main class="main">
+<section class="section active" id="intro" data-title="Introdução" data-keywords="início bem-vindo começo">
+    <div class="section-progress"><div class="section-progress-fill"></div></div>
+    <span class="badge badge-gold">Academia de Alta Performance</span>
+    <h1>Treinamento de Vendas Your Vacation</h1>
+    <p class="lead">Domine a arte de vender multipropriedade. Este material transforma consultores em especialistas de fechamento.</p>
+    <div class="card card-gold">
+        <h3>🎯 O que você vai aprender</h3>
+        <ul>
+            <li><strong>Jornada do Consultor</strong> — Da abertura até a passagem de mesa</li>
+            <li><strong>Jornada do Fechador</strong> — Do agradecimento até a assinatura</li>
+            <li><strong>Técnicas Essenciais</strong> — Rapport, Mini Sim, Pergunta com Venda</li>
+            <li><strong>15+ Objeções</strong> — Contornos prontos para usar</li>
+            <li><strong>20 Perguntas de Quiz</strong> — Teste seu conhecimento</li>
+            <li><strong>Calculadora Financeira</strong> — Argumente com números</li>
+        </ul>
+    </div>
+    <div class="alert alert-gold"><span class="alert-icon">💡</span><div><strong>O fechador não vende. O fechador ajuda o cliente a decidir.</strong></div></div>
+    <h3>Dois Papéis, Uma Missão</h3>
+    <div class="comparison">
+        <div class="card"><span class="badge badge-consultor">Consultor</span><ul><li>Criar conexão emocional</li><li>Apresentar empreendimento</li><li>Construir credibilidade</li><li>Explicar conceito</li><li>Validar interesse</li></ul></div>
+        <div class="card"><span class="badge badge-fechador">Fechador</span><ul><li>Conduzir decisão</li><li>Validar valor e condição</li><li>Tratar objeções</li><li>Gerar urgência lógica</li><li>Fechar contrato</li></ul></div>
+    </div>
+    <h2>Como usar</h2>
+    <div class="card"><ul><li><strong>🔍 Busca:</strong> Digite qualquer termo</li><li><strong>⭐ Favoritos:</strong> Clique na estrela para salvar</li><li><strong>📋 Checklists:</strong> Marcações salvam automaticamente</li><li><strong>📝 Notas:</strong> Suas anotações pessoais</li><li><strong>⌨️ Atalhos:</strong> ← → navegar, F favoritar, / buscar</li></ul></div>
+    <div class="alert alert-info"><span class="alert-icon">📱</span><div><strong>Celular:</strong> Abra este link no Safari, Chrome ou Samsung Internet. Preview interno do WhatsApp pode capar o menu.</div></div>
+</section>
+<section class="section" id="mentalidade" data-title="Mentalidade de Vendas" data-keywords="postura estado mental atitude">
+    <div class="section-progress"><div class="section-progress-fill"></div></div>
+    <span class="badge badge-gold">Fundamentos</span>
+    <h1>Mentalidade de Vendas</h1>
+    <p class="lead">Antes de técnicas, existe postura. O estado mental correto é fundamento de toda venda.</p>
+    <div class="comparison">
+        <div class="comparison-bad"><div class="comp-title"><span>❌</span> TIRADOR DE PEDIDO</div><ul><li>Espera cliente decidir</li><li>Responde passivamente</li><li>Medo de perder venda</li><li>Faz desconto na primeira objeção</li></ul></div>
+        <div class="comparison-good"><div class="comp-title"><span>✅</span> CONSULTOR</div><ul><li>Conduz à decisão</li><li>Transforma perguntas em oportunidades</li><li>Segurança e autoridade</li><li>Defende valor antes de negociar</li></ul></div>
+    </div>
+    <div class="card card-gold"><p style="font-size:17px; text-align:center; color:var(--white); font-style:italic;">"Não estou pedindo uma decisão. Estou explicando por que decidir agora faz sentido."</p></div>
+    <div class="card">
+        <h3>Frase de Impacto</h3>
+        <p>"Não é o cliente que te pressiona. É a tua ansiedade que te trai."</p>
+        <h3>Pontos Sagrados</h3>
+        <ul>
+            <li>Postura de consultor, não balconista</li>
+            <li>Controle emocional: respire e paute a conversa</li>
+            <li>Curiosidade genuína: vá fundo nas histórias do casal</li>
+            <li>Registre aprendizados e treine diariamente</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h3>Por que Mentalidade importa</h3>
+        <p>A postura certa é o alicerce de toda venda. Sem presença e segurança, nenhuma técnica funciona. Você precisa entrar no estado certo para conduzir a jornada do cliente.</p>
+    </div>
+</section>
+<section class="section" id="abertura" data-title="Abertura" data-keywords="boas-vindas recepção início apresentação">
+    <div class="section-progress"><div class="section-progress-fill"></div></div>
+    <span class="badge badge-consultor">Consultor | Etapa 1</span>
+    <h1>Abertura — Posicionamento e Autoridade</h1>
+    <p class="lead">Os primeiros 30 segundos definem o tom.</p>
+    <div class="card">
+        <h3>Frase de Impacto</h3>
+        <p>"A primeira impressão define se o cliente te seguirá até o final."</p>
+        <h3>Pontos Sagrados</h3>
+        <ul>
+            <li>Faça contato visual com ambos</li>
+            <li>Apresente-se como consultor patrimonial</li>
+            <li>Adapte sua energia com sorriso e postura aberta</li>
+            <li>Caminhe ao lado do casal, nunca na frente</li>
+        </ul>
+    </div>
+    <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button><p>"João e Maria, sejam bem-vindos. É um imenso prazer em recebê-los. Meu nome é [NOME], sou o consultor patrimonial de férias da família e sou eu o responsável em apresentar as experiências de lazer que estamos desenvolvendo para famílias como a de vocês. Me acompanhem por favor."</p></div>
+    <h3>Pontos Críticos</h3>
+    <ul><li><strong>Comunicação ativa e descontraída</strong></li><li><strong>Caminhe ao lado do casal</strong> — Nunca saia correndo na frente</li><li><strong>Use "consultor patrimonial"</strong> — Não "vendedor"</li></ul>
+</section>
+<section class="section" id="ativacao" data-title="Ativação Emocional" data-keywords="emoção maquete apartamento modelo">
+    <div class="section-progress"><div class="section-progress-fill"></div></div>
+    <span class="badge badge-consultor">Consultor | Etapa 2</span>
+    <h1>Ativação Emocional</h1>
+    <p class="lead">Informação técnica sem emoção não vende.</p>
+    <div class="card card-gold"><p style="font-size:17px; text-align:center; color:var(--white);"><strong>Informação Técnica + Complemento Emocional = Conexão</strong></p></div>
+    <div class="accordion">
+        <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)"><h4>📏 Tamanho da Área</h4><span class="acc-icon">▼</span></div><div class="acc-content"><div class="comparison"><div class="comparison-bad"><div class="comp-title"><span>❌</span> ERRADO</div><p>"O empreendimento tem 50 mil m²."</p></div><div class="comparison-good"><div class="comp-title"><span>✅</span> CERTO</div><p>"O empreendimento tem 50 mil m², espaço de sobra para as crianças correrem e vocês terem privacidade total."</p></div></div></div></div>
+        <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)"><h4>🏠 Metragem do Apartamento</h4><span class="acc-icon">▼</span></div><div class="acc-content"><div class="comparison"><div class="comparison-bad"><div class="comp-title"><span>❌</span> ERRADO</div><p>"O apartamento tem 42m²."</p></div><div class="comparison-good"><div class="comp-title"><span>✅</span> CERTO</div><p>"O apartamento tem 42m², espaço suficiente para toda família com conforto. É horrível ficar num lugar que mal cabem as malas, né?"</p></div></div></div></div>
+        <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)"><h4>🌳 Mata Preservada</h4><span class="acc-icon">▼</span></div><div class="acc-content"><div class="comparison"><div class="comparison-bad"><div class="comp-title"><span>❌</span> ERRADO</div><p>"Temos área de mata preservada."</p></div><div class="comparison-good"><div class="comp-title"><span>✅</span> CERTO</div><p>"Temos mata preservada onde a família terá contato real com a natureza. Imagina acordar ouvindo passarinhos em vez de buzina?"</p></div></div></div></div>
+    </div>
+    <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button><p>"Imaginem vocês deixando a rotina da cidade e chegando nesse empreendimento! As crianças animadas, vocês descansando e curtindo toda a estrutura."</p></div>
+</section>
+<section class="section" id="warmup" data-title="Warm-up Estratégico" data-keywords="perguntas qualificação sondagem">
+    <div class="section-progress"><div class="section-progress-fill"></div></div>
+    <span class="badge badge-consultor">Consultor | Etapa 3</span>
+    <h1>Warm-up Estratégico</h1>
+    <p class="lead">Perguntas que revelam perfil, necessidades e potencial.</p>
+    <div class="card card-gold">
+        <h4>Perguntas Obrigatórias</h4>
+        <ul><li><strong>Quantas semanas por ano viajam?</strong></li><li><strong>Em que época normalmente viajam?</strong></li><li><strong>Quais as viagens dos sonhos da família?</strong></li><li><strong>Qual foi a última viagem?</strong></li><li><strong>Normalmente pagam quanto em diárias?</strong></li><li><strong>Qual a próxima viagem planejada?</strong></li></ul>
+    </div>
+    <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button><p>"Bom pessoal, agora que já nos conhecemos melhor, vamos falar sobre nosso grupo e as experiências de viagens que estamos desenvolvendo para vocês."</p></div>
+    <div class="card">
+        <h3>Por que Warm-up funciona</h3>
+        <p>O warm-up é onde você coleta a munição emocional. Perguntas abertas revelam motivações, dores e sonhos. Quando você escuta 70% e fala 30%, o casal se sente compreendido e confia em você.</p>
+        <h3>Analogia</h3>
+        <p>Warm-up é garimpo: você cava até achar ouro. A maioria cava só areia e acha que acabou.</p>
+        <h3>Erros Comuns</h3>
+        <ul>
+            <li>Interrogar como policial</li>
+            <li>Não dar suporte às respostas</li>
+            <li>Esquecer de usar o que descobriu depois</li>
+        </ul>
+        <h3>Checklist</h3>
+        <ul>
+            <li>Fiz perguntas abertas?</li>
+            <li>Dei suporte e escutei mais do que falei?</li>
+            <li>Descobri Família, Ocupação, Recreação, Motivação e Interesses (FORMI)?</li>
+            <li>Anotei mentalmente gatilhos emocionais?</li>
+        </ul>
+    </div>
+</section>
+<section class="section" id="credibilidade" data-title="Credibilidade" data-keywords="grupo empresa segurança prova local">
+    <div class="section-progress"><div class="section-progress-fill"></div></div>
+    <span class="badge badge-consultor">Consultor | Etapa 4</span>
+    <h1>Credibilidade</h1>
+    <p class="lead">Investir com segurança começa por saber com quem estamos caminhando.</p>
+    <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button><p>"João e Maria, é muito importante que vocês conheçam quem está por trás de tudo isso. Porque investir com segurança começa por saber exatamente com quem estamos caminhando, concordam?"</p></div>
+    <div class="card"><ul><li><strong>Use prova local:</strong> histórico, operação, entrega, patrimônio</li><li><strong>Mostre permanência:</strong> empresa que entrega, não promessa vazia</li><li><strong>Conecte confiança ao casal:</strong> segurança é emocional antes de ser racional</li></ul></div>
+</section>
+<section class="section" id="conceito" data-title="Conceito de Multipropriedade" data-keywords="fracionamento escritura patrimônio lei">
+    <div class="section-progress"><div class="section-progress-fill"></div></div>
+    <span class="badge badge-consultor">Consultor | Etapa 5</span>
+    <h1>Conceito de Multipropriedade</h1>
+    <p class="lead">Transformando gasto em patrimônio.</p>
+    <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button><p>"Vocês já perceberam que toda vez que viajam pagam tudo de novo? Hotel, diária, taxa, alimentação... E se parte dessas férias deixasse de ser gasto e passasse a ser patrimônio?"</p></div>
+    <div class="alert alert-info"><span class="alert-icon">⚖️</span><div><strong>Base Legal:</strong> Lei nº 13.777, de 20 de dezembro de 2018</div></div>
+    <div class="timeline">
+        <div class="tl-item"><div class="tl-title">1. Fracionamento</div><div class="tl-desc">Apartamento dividido em frações de uso</div></div>
+        <div class="tl-item"><div class="tl-title">2. Propriedade</div><div class="tl-desc">Cada fração é escriturada e registrada em cartório</div></div>
+        <div class="tl-item"><div class="tl-title">3. Herança</div><div class="tl-desc">Patrimônio que pode ser herdado por gerações</div></div>
+        <div class="tl-item"><div class="tl-title">4. Flexibilidade</div><div class="tl-desc">Usar, emprestar, alugar ou vender quando quiser</div></div>
+    </div>
+</section>
+<section class="section" id="logica" data-title="Lógica Financeira" data-keywords="números cálculo investimento diária">
+    <div class="section-progress"><div class="section-progress-fill"></div></div>
+    <span class="badge badge-consultor">Consultor | Etapa 6</span>
+    <h1>Lógica Financeira</h1>
+    <p class="lead">Números que transformam gasto em investimento.</p>
+    <div class="card"><p><strong>A Conta:</strong></p><ul><li>Diária média: R$600</li><li>1 semana = R$4.200</li><li>2 semanas/ano = R$8.400</li><li>10 anos = R$84.000 (sem reajustes)</li></ul><p style="color:var(--warning); margin-top:12px"><strong>⚠️ E as diárias NÃO se congelam — aumentam todo ano.</strong></p></div>
+    <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button><p>"A pergunta que quero fazer pra vocês é: se essa propriedade com todos os benefícios custasse entre R$84.000 a R$100.000, vocês acham que valeria? Lembrando que estamos falando de um patrimônio para o resto da vida."</p></div>
+</section>
+<section class="section" id="pacto" data-title="Pacto Final" data-keywords="4 perguntas passagem mesa">
+    <div class="section-progress"><div class="section-progress-fill"></div></div>
+    <span class="badge badge-consultor">Consultor | Etapa 7</span>
+    <h1>Pacto Final</h1>
+    <p class="lead">As 4 perguntas que preparam o terreno para o fechador.</p>
+    <div class="card card-gold">
+        <h4>As 4 Perguntas do Pacto</h4>
+        <ol style="font-size:15px; line-height:2.2"><li><strong>GOSTARAM DO NOSSO PRODUTO?</strong></li><li><strong>UTILIZARIAM?</strong></li><li><strong>QUEREM ADQUIRIR PRA SUA FAMÍLIA?</strong></li><li><strong>TIRANDO A PARTE FINANCEIRA, EXISTE ALGUM OUTRO MOTIVO QUE OS IMPEÇA DE SE TORNAREM PROPRIETÁRIOS HOJE?</strong></li></ol>
+    </div>
+    <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button><p>"Família, esse é o [NOME] — meu Gerente Financeiro. [NOME], estamos com uma família maravilhosa que adora viajar. Eles GOSTARAM, vão UTILIZAR, e QUEREM ter esse patrimônio. Tirando valores, não existe nenhum outro motivo que impeça."</p></div>
+</section>
+<section class="section" id="mesa" data-title="Mesa, Marketing Pessoal e Passagem" data-keywords="mesa marketing pessoal passagem casal">
+    <div class="section-progress"><div class="section-progress-fill"></div></div>
+    <span class="badge badge-gold">Consultor | Etapa crítica</span>
+    <h1>Mesa, Marketing Pessoal e Passagem</h1>
+    <p class="lead">Até sentar, você ainda está vendendo. E às vezes mais do que no palco.</p>
+    <div class="card card-gold"><p style="font-size:17px; text-align:center; color:var(--white);">"A venda não para quando você anda. Ela respira entre uma etapa e outra."</p></div>
+    <div class="card">
+        <h3>Pontos Sagrados</h3>
+        <ul>
+            <li>Não desligue depois da maquete</li>
+            <li>Faça o casal gostar de você</li>
+            <li>Ganhe a mulher e mantenha os dois incluídos</li>
+            <li>Mesa limpa, energia leve, presença firme</li>
+            <li>Marketing pessoal sem arrogância</li>
+        </ul>
+        <h3>Por que funciona</h3>
+        <p>Quando o casal senta, o cérebro já começou a decidir. Se a transição foi boa, eles sentam mais confiantes, menos defensivos e mais abertos para o financeiro.</p>
+        <h3>Checklist de Mesa</h3>
+        <ul>
+            <li>Ambos estão participando?</li>
+            <li>Eu mantive o clima leve?</li>
+            <li>Usei nome, ponto em comum e suporte?</li>
+            <li>Minha autoridade veio com calma e não com pose?</li>
+        </ul>
+    </div>
+</section>
+<section class="section" id="agradecimento" data-title="Agradecimento" data-keywords="fechador início acolhimento">
+    <div class="section-progress"><div class="section-progress-fill"></div></div>
+    <span class="badge badge-fechador">Fechador | Etapa 1</span>
+    <h1>Agradecimento</h1>
+    <p class="lead">Aliviar passagem de mesa, reduzir tensão.</p>
+    <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button><p>"João e Maria, primeiramente quero agradecer pela presença e pelo tempo que vocês dedicaram até aqui. Foi um prazer receber vocês. A partir de agora, meu papel é apenas alinhar valores e ajudar vocês a tomarem a melhor decisão para a família."</p></div>
+    <div class="alert alert-gold"><span class="alert-icon">⚠️</span><div><strong>Atenção:</strong> Tom calmo, postura aberta, ritmo mais lento. O casal precisa sentir ALÍVIO.</div></div>
+</section>
+<section class="section" id="duvidas" data-title="Dúvidas e Objeções" data-keywords="tratamento perguntas esclarecimento">
+    <div class="section-progress"><div class="section-progress-fill"></div></div>
+    <span class="badge badge-fechador">Fechador | Etapa 2</span>
+    <h1>Dúvidas e Objeções</h1>
+    <p class="lead">Identificar e eliminar dúvidas antes de falar em preço.</p>
+    <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button><p>"Antes de falarmos em valores, gostaria de confirmar se ficou alguma dúvida sobre o empreendimento, o conceito de multipropriedade ou a forma de utilização."</p></div>
+    <div class="alert alert-danger"><span class="alert-icon">⚠️</span><div><strong>Regras:</strong><br>• Dúvidas não tratadas viram adiamento<br>• Falsas objeções escondem medo do preço<br>• Não discuta falsa objeção — encontre a causa real</div></div>
+</section>
+<section class="section" id="tabela" data-title="Apresentação da Tabela" data-keywords="preço valor condição pagamento">
+    <div class="section-progress"><div class="section-progress-fill"></div></div>
+    <span class="badge badge-fechador">Fechador | Etapa 3</span>
+    <h1>Apresentação da Tabela</h1>
+    <p class="lead">Reforçar valor percebido antes de mostrar preço.</p>
+    <div class="alert alert-danger"><span class="alert-icon">🛑</span><div><strong>REGRA DE OURO:</strong> Se o cliente não validar valor, NÃO apresente preço.</div></div>
+    <div class="card card-gold"><ul><li><strong>Valor antes de preço</strong></li><li><strong>Compare com o gasto que já existe</strong></li><li><strong>Ancore patrimônio, uso e legado</strong></li></ul></div>
+</section>
+<section class="section" id="promocao" data-title="Promoção" data-keywords="condição desconto oportunidade">
+    <div class="section-progress"><div class="section-progress-fill"></div></div>
+    <span class="badge badge-fechador">Fechador | Etapa 4</span>
+    <h1>Promoção e Condição</h1>
+    <p class="lead">Condição existe para acelerar decisão, não para implorar negócio.</p>
+    <div class="card"><ul><li>Promoção precisa ter lógica</li><li>Urgência sem desespero</li><li>Desconto cedo demais destrói autoridade</li></ul></div>
+</section>
+<section class="section" id="finalizacao" data-title="Finalização" data-keywords="assinatura fechamento contrato">
+    <div class="section-progress"><div class="section-progress-fill"></div></div>
+    <span class="badge badge-fechador">Fechador | Etapa 5</span>
+    <h1>Finalização</h1>
+    <p class="lead">Fechar não é apertar. É conduzir com clareza até a decisão.</p>
+    <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button><p>"Perfeito. Então vamos formalizar da forma mais simples possível para vocês saírem daqui tranquilos e felizes com a decisão."</p></div>
+</section>
+<section class="section" id="rapport" data-title="Rapport" data-keywords="conexão sintonia espelhamento confiança">
+    <div class="section-progress"><div class="section-progress-fill"></div></div>
+    <span class="badge badge-gold">Técnica Essencial</span>
+    <h1>Rapport — A Arte da Conexão</h1>
+    <p class="lead">Sem conexão, não há confiança. Sem confiança, não há venda.</p>
+    <div class="card">
+        <h3>Frase de Impacto</h3>
+        <p>"O cliente decide se te escuta antes de decidir se compra."</p>
+        <h3>Pontos Sagrados</h3>
+        <ul>
+            <li>Use o nome sempre</li>
+            <li>Ajuste sua energia ao casal</li>
+            <li>Ganhe a mulher: ela é o termômetro social da mesa</li>
+            <li>Encontre um ponto em comum verdadeiro</li>
+            <li>Valide emoções antes de seguir</li>
+        </ul>
+    </div>
+    <div class="card card-gold"><ul><li><strong>Princípio da similaridade:</strong> Gostamos de pessoas parecidas</li><li><strong>Espelhamento neural:</strong> Cérebro responde quando somos "espelhados"</li><li><strong>Redução de resistência:</strong> Confiança diminui barreiras</li></ul></div>
+    <div class="accordion">
+        <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)"><h4>👀 1. Espelhamento Corporal</h4><span class="acc-icon">▼</span></div><div class="acc-content"><p>Sutilmente imite a postura, gestos e ritmo do cliente.</p><ul><li>Se ele cruza os braços, aguarde e cruze também</li><li>Se ele fala devagar, diminua seu ritmo</li><li>Se ele se inclina para frente, faça o mesmo</li></ul></div></div>
+        <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)"><h4>🗣️ 2. Espelhamento Verbal</h4><span class="acc-icon">▼</span></div><div class="acc-content"><p>Use as mesmas palavras que o cliente usa.</p><div class="comparison"><div class="comparison-bad"><div class="comp-title"><span>❌</span></div><p>Cliente: "Quero descansar."<br>Você: "Busca refúgio de lazer."</p></div><div class="comparison-good"><div class="comp-title"><span>✅</span></div><p>Cliente: "Quero descansar."<br>Você: "Um lugar pra descansar. Quantas vezes por ano conseguem?"</p></div></div></div></div>
+        <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)"><h4>👂 3. Escuta Ativa</h4><span class="acc-icon">▼</span></div><div class="acc-content"><ul><li>Faça contato visual</li><li>Acene com a cabeça</li><li>Use sons de confirmação</li><li>NÃO interrompa</li></ul></div></div>
+        <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)"><h4>❤️ 4. Interesse Genuíno</h4><span class="acc-icon">▼</span></div><div class="acc-content"><ul><li>"Quanto tempo vocês estão juntos?"</li><li>"Os filhos já estão em que idade?"</li><li>"Qual foi a viagem mais marcante?"</li></ul></div></div>
+        <div class="acc-item"><div class="acc-header" onclick="toggleAcc(this)"><h4>🔍 5. Pontos em Comum</h4><span class="acc-icon">▼</span></div><div class="acc-content"><p>Busque conexões reais — cidade, time, hobby, filhos.</p><div class="alert alert-danger"><span class="alert-icon">⚠️</span><div>Tem que ser VERDADE. Mentira destrói rapport.</div></div></div></div>
+    </div>
+</section>
+<section class="section" id="minisim" data-title="Mini Sim" data-keywords="concordância micro sim validação">
+    <div class="section-progress"><div class="section-progress-fill"></div></div>
+    <span class="badge badge-gold">Técnica Essencial</span>
+    <h1>Mini Sim — Micro Concordâncias</h1>
+    <p class="lead">Pequenos "sins" constroem o grande "SIM".</p>
+    <div class="card card-gold"><ul><li><strong>Consistência cognitiva:</strong> Cérebro busca coerência</li><li><strong>Momentum:</strong> Cada "sim" facilita o próximo</li><li><strong>Compromisso progressivo:</strong> Pequenos levam a maiores</li></ul></div>
+    <h3>8 Exemplos (clique para virar)</h3>
+    <div class="flashcard" onclick="this.classList.toggle('flipped')"><div class="fc-inner"><div class="fc-front"><div class="fc-label">Mini Sim #1</div><div class="fc-text">"Férias em família são importantes pra vocês, não são?"</div><div class="fc-hint">Clique para ver</div></div><div class="fc-back"><div class="fc-label">Resposta</div><div class="fc-text">"Sim, com certeza."</div></div></div></div>
