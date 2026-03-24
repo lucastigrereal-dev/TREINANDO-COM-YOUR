@@ -255,6 +255,8 @@
             <li><strong>Autoavaliacao:</strong> rever atendimentos e marcar quantas perguntas foram de situacao versus quantas chegaram em impacto.</li>
         </ul>
     </div>
+    <div class="flashcard"><div class="fc-inner"><div class="fc-front"><div class="fc-label">Flashcard</div><div class="fc-text">Dado nao e dor.</div><div class="fc-hint">Toque para virar</div></div><div class="fc-back"><div class="fc-label">Aplicacao</div><div class="fc-text">Saber quantas vezes o casal viaja ajuda pouco se voce ainda nao descobriu o que frustra essa experiencia.</div></div></div></div>
+    <div class="flashcard"><div class="fc-inner"><div class="fc-front"><div class="fc-label">Flashcard</div><div class="fc-text">Problema sem impacto nao sustenta valor.</div><div class="fc-hint">Toque para virar</div></div><div class="fc-back"><div class="fc-label">Aplicacao</div><div class="fc-text">Se o casal nao sente o peso do improviso, preco vira o centro cedo demais.</div></div></div></div>
 </section>
 <section class="section" id="credibilidade" data-title="Credibilidade" data-keywords="credibilidade autoridade confianca">
     <div class="section-progress"><div class="section-progress-fill"></div></div>
@@ -464,6 +466,8 @@
     </div>
     <div class="flashcard"><div class="fc-inner"><div class="fc-front"><div class="fc-label">Flashcard</div><div class="fc-text">Rapport = seguranca, nao amizade instantanea.</div><div class="fc-hint">Toque para virar</div></div><div class="fc-back"><div class="fc-label">Aplicacao</div><div class="fc-text">Se o casal ainda nao relaxou, diagnostico vira interrogatorio.</div></div></div></div>
     <div class="flashcard"><div class="fc-inner"><div class="fc-front"><div class="fc-label">Flashcard</div><div class="fc-text">Uso do nome funciona quando parece natural.</div><div class="fc-hint">Toque para virar</div></div><div class="fc-back"><div class="fc-label">Aplicacao</div><div class="fc-text">Repetir nome em excesso parece tecnica e reduz autenticidade.</div></div></div></div>
+    <div class="flashcard"><div class="fc-inner"><div class="fc-front"><div class="fc-label">Flashcard</div><div class="fc-text">Resumo curto valida escuta real.</div><div class="fc-hint">Toque para virar</div></div><div class="fc-back"><div class="fc-label">Aplicacao</div><div class="fc-text">Quando o casal corrige voce sem resistencia, a conversa ficou segura o suficiente para aprofundar.</div></div></div></div>
+    <div class="flashcard"><div class="fc-inner"><div class="fc-front"><div class="fc-label">Flashcard</div><div class="fc-text">Ponto em comum serve para abrir, nao para atuar.</div><div class="fc-hint">Toque para virar</div></div><div class="fc-back"><div class="fc-label">Aplicacao</div><div class="fc-text">Conexao fabricada pode ate parecer simpatica, mas enfraquece a credibilidade quando o casal percebe.</div></div></div></div>
 </section>
 <section class="section" id="minisim" data-title="Mini Sim" data-keywords="mini sim simulacao">
     <div class="section-progress"><div class="section-progress-fill"></div></div>
@@ -514,6 +518,14 @@
             <li>"Se essa parte estivesse resolvida, o quanto mudaria a analise de voces?"</li>
         </ul>
     </div>
+    <div class="card">
+        <h3>Erros invisiveis</h3>
+        <ul>
+            <li>Fazer pergunta boa cedo demais, antes do diagnostico sustentar a reflexao.</li>
+            <li>Acertar o conteudo, mas errar o tom e soar acusatorio.</li>
+            <li>Ouvir a resposta e nao usa-la para conduzir o passo seguinte.</li>
+        </ul>
+    </div>
 </section>
 <section class="section" id="objecoes" data-title="Objecoes" data-keywords="objecoes caro vou pensar valor seguranca">
     <div class="section-progress"><div class="section-progress-fill"></div></div>
@@ -558,6 +570,16 @@
             <li>Dar desconto antes de entender.</li>
             <li>Tratar toda objecao como preco.</li>
             <li>Argumentar contra o cliente em vez de investigar.</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h3>Diagnostico de objeção</h3>
+        <ul>
+            <li><strong>Valor:</strong> o casal nao entendeu por que isso e melhor.</li>
+            <li><strong>Capacidade:</strong> o casal sente que pesa para o momento.</li>
+            <li><strong>Timing:</strong> ainda nao comprou a hora da decisao.</li>
+            <li><strong>Confianca:</strong> faltou seguranca no processo ou na leitura.</li>
+            <li><strong>Casal:</strong> existe divergencia entre os dois, mesmo quando um deles fala pouco.</li>
         </ul>
     </div>
 </section>
@@ -605,6 +627,14 @@
             <li>"Casais com rotina parecida normalmente percebem que..."</li>
         </ul>
     </div>
+    <div class="card">
+        <h3>Drills de arsenal</h3>
+        <ul>
+            <li>Converter 20 caracteristicas do produto em beneficios reais para casal e familia.</li>
+            <li>Criar 10 analogias simples para previsibilidade, descanso, tempo e custo invisivel.</li>
+            <li>Reescrever falas mecanicas ate elas soarem humanas e diretas.</li>
+        </ul>
+    </div>
 </section>
 <section class="section" id="calculadora" data-title="Calculadora" data-keywords="calculadora custo anual comparacao">
     <div class="section-progress"><div class="section-progress-fill"></div></div>
@@ -625,6 +655,7 @@
         <button class="quiz-opt" id="optB" onclick="answerQuiz('B')"></button>
         <button class="quiz-opt" id="optC" onclick="answerQuiz('C')"></button>
         <button class="quiz-opt" id="optD" onclick="answerQuiz('D')"></button>
+        <div class="card" id="quizExplain" style="display:none;margin-top:12px"></div>
         <div class="quiz-counter" id="quizCounter"></div>
         <div class="quiz-score" id="quizScore"></div>
         <button class="btn" id="nextQuizBtn" onclick="nextQuiz()" style="display:none">Proxima pergunta</button>
@@ -785,7 +816,23 @@ const quizData=[
   {module:'Ativacao',type:'Rapport ou pressao',difficulty:'alta',context:'Casal racional entende a proposta, mas trata tudo como "mais uma opcao".',question:'Qual fala ativa melhor sem apelar?',A:'Quem ama a familia nao adia uma decisao dessas.',B:'Se voces nao fizerem isso agora vao se arrepender.',C:'Pelo que voces trouxeram, o ganho aqui nao e so viajar. E parar de repetir um modelo que desgasta tempo, energia e qualidade das ferias. Isso tem peso real para voces?',D:'Essa e a melhor oportunidade do ano.',correct:'C',why:'C conecta valor vivido com o diagnostico e convida reflexao madura.',wrongWhy:{A:'Manipulativa.',B:'Terrorismo barato.',D:'Promocao sem profundidade.'}},
   {module:'Rapport',type:'Erro mais provavel',difficulty:'alta',context:'O consultor usa o nome do cliente em quase toda frase nos primeiros 40 segundos.',question:'Qual e o problema mais provavel?',A:'Nenhum, isso fortalece conexao automaticamente.',B:'Pode soar tecnico e artificial, reduzindo autenticidade.',C:'O nome nunca deve ser usado.',D:'Isso so atrapalha se o produto for caro.',correct:'B',why:'B acerta a sutileza: tecnica boa em excesso vira ruído.',wrongWhy:{A:'Uso do nome nao e magia.',C:'Uso zero tambem empobrece conexao.',D:'O problema e de autenticidade, nao de preco.'}},
   {module:'Warm-up',type:'Leitura de cenario',difficulty:'muito alta',context:'O casal responde bem a perguntas de contexto, mas sempre volta a frases vagas como "a gente quer aproveitar mais".',question:'Qual interpretacao e melhor?',A:'Ja existe desejo, entao e hora de explicar a oferta.',B:'Ainda falta transformar desejo generico em problema concreto e impacto real.',C:'O casal esta escondendo renda.',D:'E melhor mudar direto para objecoes.',correct:'B',why:'B percebe que desejo sem concretizacao ainda nao sustenta valor.',wrongWhy:{A:'Explicar agora produz proposta generica.',C:'Pode ate existir tema financeiro, mas nao ha sinal suficiente.',D:'Nao faz sentido pular etapas.'}},
-  {module:'Objecoes',type:'Melhor proxima fala',difficulty:'alta',context:'Cliente diz "esta caro", mas no diagnostico valorizou muito previsibilidade e qualidade do tempo.',question:'Qual e a melhor proxima fala?',A:'Posso melhorar a condicao se fecharmos hoje.',B:'Caro comparado a que referencia exatamente?',C:'Mas voces mesmos disseram que isso e importante.',D:'O problema nao e preco, e prioridade.',correct:'B',why:'B abre a referencia de comparacao e evita confronto.',wrongWhy:{A:'Desconto cedo enfraquece valor.',C:'Defensiva e pouco investigativa.',D:'Pode ate ser verdade, mas soa impositiva.'}}
+  {module:'Objecoes',type:'Melhor proxima fala',difficulty:'alta',context:'Cliente diz "esta caro", mas no diagnostico valorizou muito previsibilidade e qualidade do tempo.',question:'Qual e a melhor proxima fala?',A:'Posso melhorar a condicao se fecharmos hoje.',B:'Caro comparado a que referencia exatamente?',C:'Mas voces mesmos disseram que isso e importante.',D:'O problema nao e preco, e prioridade.',correct:'B',why:'B abre a referencia de comparacao e evita confronto.',wrongWhy:{A:'Desconto cedo enfraquece valor.',C:'Defensiva e pouco investigativa.',D:'Pode ate ser verdade, mas soa impositiva.'}},
+  {module:'Rapport',type:'Casal',difficulty:'muito alta',context:'A mulher responde tudo; o homem concorda com a cabeca, mas nao verbaliza nada.',question:'Qual movimento preserva melhor rapport e leitura de casal?',A:'Seguir com quem esta mais aberta para nao travar a conversa.',B:'Chamar o homem para participar com uma pergunta que o coloque em terreno seguro, sem expor resistencia.',C:'Perguntar ao homem se ele esta desconectado da decisao.',D:'Brincar que a resposta final e sempre da mulher.',correct:'B',why:'B inclui o lado silencioso sem constrangimento e protege a dinamica do casal.',wrongWhy:{A:'Pode funcionar por segundos, mas te deixa cego para a decisao real.',C:'Confronta cedo demais.',D:'Humor aqui arrisca desalinhar o casal.'}},
+  {module:'Warm-up',type:'Erro sutil',difficulty:'alta',context:'O consultor faz boas perguntas, mas muda de assunto toda vez que aparece uma pista emocional.',question:'Qual e o erro principal?',A:'Falta de quebra de gelo.',B:'Excesso de profundidade.',C:'Nao transformar pista emocional em aprofundamento de impacto.',D:'Ausencia de prova social.',correct:'C',why:'C identifica o erro invisivel: ouvir a dor aparecer e nao levá-la para significado.',wrongWhy:{A:'O problema nao e abertura.',B:'Na verdade faltou profundidade real.',D:'Prova social nao resolveria a lacuna.'}},
+  {module:'Pergunta com Venda',type:'Melhor entre boas',difficulty:'muito alta',context:'O casal ja admite que gasta mal quando decide tarde, mas ainda trata isso como detalhe toleravel.',question:'Qual pergunta e a melhor agora?',A:'Se isso continuar mais dois anos, o custo maior vai ser financeiro ou de qualidade das ferias?',B:'Voces percebem que ja perderam dinheiro suficiente para justificar uma mudanca?',C:'Faz sentido dizer que voces estao errando na forma de decidir?',D:'Voces querem mais previsibilidade, certo?',correct:'A',why:'A trabalha consequencia sem culpar o casal e abre raciocinio mais maduro.',wrongWhy:{B:'Aperta e acusa.',C:'Excessivamente confrontativa.',D:'Boa, mas superficial para o momento.'}},
+  {module:'Mesa',type:'Rapport ou pressao',difficulty:'alta',context:'Casal frio aceitou continuar, mas a expressao ainda e de cautela.',question:'Qual fala mantem melhor controle e leveza?',A:'Agora voces vao entender a parte importante.',B:'Vou passar voces para aprofundarmos com base no que faz sentido para esse perfil, sem transformar isso numa conversa repetida.',C:'Chegou a hora de decidir se isso serve ou nao.',D:'A partir daqui e com o fechador.',correct:'B',why:'B explica, organiza e nao ameaça o casal com pressao antecipada.',wrongWhy:{A:'Cria hierarquia ruim e pode desvalorizar o que veio antes.',C:'Escala o compromisso cedo demais.',D:'Mecanica e fria.'}},
+  {module:'Objecoes',type:'Leitura de cenario',difficulty:'alta',context:'A mulher pergunta detalhes operacionais logo depois de ouvir o investimento. O homem fica calado.',question:'Qual leitura e mais forte?',A:'Ela quer ganhar tempo porque rejeitou a proposta.',B:'Detalhe operacional pode ser forma segura de processar uma duvida maior sobre risco ou confianca.',C:'O homem ja decidiu e ela esta atrapalhando.',D:'A melhor resposta e voltar para a promocao.',correct:'B',why:'B entende que pergunta operacional muitas vezes mascara inseguranca mais funda.',wrongWhy:{A:'Pode ate acontecer, mas a leitura e apressada.',C:'Sem evidencias suficientes.',D:'Promocao aqui so desvia.'}},
+  {module:'Arsenal',type:'Valor antes do preco',difficulty:'alta',context:'O casal pede preco cedo, antes de entender bem a proposta.',question:'Qual resposta e melhor?',A:'Claro, vou direto ao numero para nao enrolar voces.',B:'Antes do numero, deixa eu alinhar a comparacao para voces nao avaliarem isso como se fosse mais uma viagem qualquer.',C:'O preco eu deixo para o final porque essa e a regra.',D:'Sem entender tudo antes, o preco nao adianta.',correct:'B',why:'B protege valor sem soar defensivo nem professoral.',wrongWhy:{A:'Entrega preco solto.',C:'Fala de regra em vez de beneficio para o casal.',D:'Tem fundo de verdade, mas o tom fecha a conversa.'}},
+  {module:'Ativacao',type:'Melhor proxima fala',difficulty:'alta',context:'Casal com filhos fala que quase nunca consegue desligar nas ferias.',question:'Qual fala ativa melhor?',A:'Voce precisa priorizar mais sua familia.',B:'Entao voces precisam decidir isso logo.',C:'Se as ferias continuam exigindo mais energia do que entregando descanso, o problema deixa de ser destino e vira qualidade de vida da familia. Isso pesa para voces?',D:'Todo mundo passa por isso hoje em dia.',correct:'C',why:'C traduz a dor em significado sem moralizar.',wrongWhy:{A:'Julga o casal.',B:'Pula para pressao.',D:'Valida demais e conduz de menos.'}},
+  {module:'Rapport',type:'Melhor proxima fala',difficulty:'media',context:'O casal parece simpatico, mas responde tudo no automatico.',question:'Qual fala tende a aprofundar?',A:'Que bom que voces sao tranquilos, vai ser facil.',B:'Me ajuda a entender uma coisa: quando voces pensam em uma viagem realmente boa, o que separa "foi legal" de "valeu mesmo a pena"?',C:'Vou te explicar como funciona e voces me dizem se gostam.',D:'Posso presumir que voces gostam de conforto?',correct:'B',why:'B muda o nivel da conversa e convida significado.',wrongWhy:{A:'E elogio vazio.',C:'Explica cedo.',D:'Presume demais.'}},
+  {module:'Warm-up',type:'Melhor pergunta',difficulty:'alta',context:'O casal diz que a agenda nunca encaixa.',question:'Qual e a melhor pergunta seguinte?',A:'Quem tem a agenda mais dificil entre voces?',B:'Se a agenda pesa tanto, o que normalmente acontece com a decisao das ferias: adiam, decidem correndo ou desistem de aproveitar melhor?',C:'Vocês trabalham em horario comercial?',D:'Entao voces viajam pouco?',correct:'B',why:'B sai do fato para a consequencia pratica e abre impacto.',wrongWhy:{A:'Pode ser util depois, mas ainda e superficie.',C:'Pergunta administrativa.',D:'Fecha demais a resposta.'}},
+  {module:'Pergunta com Venda',type:'Erro mais provavel',difficulty:'alta',context:'Depois de uma boa pergunta de consequencia, o consultor responde a propria pergunta imediatamente.',question:'Qual foi o erro?',A:'Fez pergunta fechada.',B:'Gerou reflexao e matou o silencio util antes do casal pensar.',C:'Faltou usar o nome do cliente.',D:'Precisava usar humor em seguida.',correct:'B',why:'B capta o erro fino: boa pergunta sem espaco de processamento perde metade da forca.',wrongWhy:{A:'A pergunta pode ter sido boa.',C:'Nome nao resolveria isso.',D:'Humor e irrelevante aqui.'}},
+  {module:'Mesa',type:'Melhor entre boas',difficulty:'muito alta',context:'O consultor precisa passar para a mesa, mas percebe uma leve trava no homem quando o assunto avancou.',question:'Qual fala e melhor?',A:'Antes de seguir, quero checar uma coisa contigo: tem algo nessa transicao que ainda te deixa mais cauteloso?',B:'Vamos em frente que ele vai conseguir te explicar melhor.',C:'Vou passar para a mesa e la voces podem levantar qualquer preocupacao.',D:'Relaxa, e so uma conversa.',correct:'A',why:'A faz microchecagem inteligente antes da passagem e previne reset defensivo.',wrongWhy:{B:'Transfere sem tratar a trava.',C:'Funciona, mas deixa a inseguranca viajar junto.',D:'Minimiza a sensacao do cliente.'}},
+  {module:'Objecoes',type:'Melhor pergunta',difficulty:'muito alta',context:'Ao dizer "vamos pensar", o casal parece educado, mas nao hostil.',question:'Qual pergunta abre melhor a objecao real?',A:'O que falta para voces fecharem hoje?',B:'Quando voces falam em pensar, o ponto principal que ainda precisa ficar seguro e valor, momento ou confianca na decisao?',C:'Vocês costumam pensar muito antes de qualquer compra?',D:'Se eu melhorar a condicao, ajuda?',correct:'B',why:'B estrutura a investigacao com categorias fortes sem parecer confronto.',wrongWhy:{A:'Pressiona e fecha o campo de resposta.',C:'Pode soar julgamento.',D:'Desconto cedo.'}},
+  {module:'Arsenal',type:'Erro mais provavel',difficulty:'alta',context:'O consultor usa prova social cedo: "muitos casais fecham isso".',question:'Qual e o erro mais sutil?',A:'Faltou volume de casos.',B:'Boa tecnica usada sem diagnostico suficiente, soando como atalho de persuasao.',C:'Prova social nunca deveria ser usada.',D:'O certo seria usar escassez primeiro.',correct:'B',why:'B reconhece o problema real: tecnica boa, timing ruim.',wrongWhy:{A:'Nao e volume o problema central.',C:'Prova social pode ser etica e eficaz.',D:'Escassez pioraria.'}},
+  {module:'Ativacao',type:'Leitura de cenario',difficulty:'alta',context:'Depois de uma ativacao emocional boa, o casal fica em silencio por alguns segundos.',question:'Qual leitura e melhor?',A:'Voce perdeu o controle da conversa.',B:'Silencio pode ser processamento de valor e nao deve ser preenchido automaticamente.',C:'Precisa entrar com promocao para manter energia.',D:'E sinal de que a ativacao foi fraca.',correct:'B',why:'B entende o valor do silencio depois de uma fala de peso.',wrongWhy:{A:'Nem todo silencio e perda de controle.',C:'Promocao interromperia reflexao.',D:'Pode ser justamente o oposto.'}},
+  {module:'Objecoes',type:'Casal',difficulty:'muito alta',context:'A mulher diz "eu gostei", e o homem responde "vamos com calma".',question:'Qual proxima fala e melhor?',A:'Entao o problema e com voce?',B:'Perfeito, me ajuda a entender qual parte precisa de mais calma para ficar segura para voces dois.',C:'Como ela gostou, vamos seguir e depois voce acompanha.',D:'Normal, homem sempre trava mais.',correct:'B',why:'B respeita a dinamica, nao cria lado vencedor e abre a trava real.',wrongWhy:{A:'Confronta.',C:'Cria ruptura no casal.',D:'Estereotipo ruim e perigoso.'}},
+  {module:'Warm-up',type:'Valor antes do preco',difficulty:'alta',context:'O casal pergunta cedo se isso "vale a pena".',question:'Qual resposta prepara melhor o terreno?',A:'Vale muito, pode confiar.',B:'Depende do que voces comparam. Se a referencia for so numero, fica raso; se a referencia for como voces querem viver as ferias, a analise muda bastante.',C:'Tudo vale a pena quando o produto e bom.',D:'Isso eu respondo no final.',correct:'B',why:'B recoloca criterio de comparacao e amadurece a conversa.',wrongWhy:{A:'Afirma sem base.',C:'Generaliza demais.',D:'Adia sem construir valor.'}}
 ];
 let quizIndex=0;
 let quizScore=0;
@@ -800,6 +847,10 @@ function loadQuiz(){
   document.getElementById('optD').textContent=`D) ${item.D}`;
   document.querySelectorAll('.quiz-opt').forEach(opt=>{opt.disabled=false;opt.classList.remove('correct','wrong');});
   document.getElementById('quizCounter').textContent=`Pergunta ${quizIndex+1} de ${quizData.length}`;
+  document.getElementById('quizExplain').style.display='none';
+  document.getElementById('quizExplain').innerHTML='';
+  document.querySelectorAll('.quiz-opt').forEach(opt=>opt.style.display='block');
+  document.getElementById('quizScore').style.display='none';
   document.getElementById('nextQuizBtn').style.display='none';
   answered=false;
 }
@@ -809,9 +860,17 @@ function answerQuiz(letter){
   const item=quizData[quizIndex];
   const button=document.getElementById(`opt${letter}`);
   const correctButton=document.getElementById(`opt${item.correct}`);
+  const optionNotes={
+    A:item.correct==='A'?'Esta era a melhor opcao no contexto.':item.wrongWhy.A,
+    B:item.correct==='B'?'Esta era a melhor opcao no contexto.':item.wrongWhy.B,
+    C:item.correct==='C'?'Esta era a melhor opcao no contexto.':item.wrongWhy.C,
+    D:item.correct==='D'?'Esta era a melhor opcao no contexto.':item.wrongWhy.D
+  };
   document.querySelectorAll('.quiz-opt').forEach(opt=>opt.disabled=true);
   if(letter===item.correct){button.classList.add('correct');quizScore++;}
   else{button.classList.add('wrong');correctButton.classList.add('correct');}
+  document.getElementById('quizExplain').style.display='block';
+  document.getElementById('quizExplain').innerHTML=`<h3>Leitura da questao</h3><p><strong>Melhor resposta:</strong> ${item.correct}. ${item.why}</p><p><strong>Leitura das alternativas:</strong></p><ul><li><strong>A:</strong> ${optionNotes.A}</li><li><strong>B:</strong> ${optionNotes.B}</li><li><strong>C:</strong> ${optionNotes.C}</li><li><strong>D:</strong> ${optionNotes.D}</li></ul>`;
   showToast(item.why);
   document.getElementById('nextQuizBtn').style.display='block';
 }
