@@ -582,6 +582,16 @@
             </div>
         </div>
         <div class="acc-item">
+            <div class="acc-header"><h4>Roleplays de casal</h4><span>+</span></div>
+            <div class="acc-content">
+                <ul>
+                    <li><strong>Casal frio:</strong> um responde seco, o outro so observa. Objetivo: chegar na mesa sem cara de empurrao.</li>
+                    <li><strong>Casal engajado:</strong> ambos gostam, mas um deles teme decidir rapido demais. Objetivo: manter ritmo sem pular microchecagem.</li>
+                    <li><strong>Casal desalinhado:</strong> um quer seguir, o outro quer frear. Objetivo: passar bastao sem criar lado vencedor.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="acc-item">
             <div class="acc-header"><h4>Quiz avancado do modulo</h4><span>+</span></div>
             <div class="acc-content">
                 <ul>
@@ -644,6 +654,13 @@
             <div class="acc-header"><h4>Grave isso no corpo</h4><span>+</span></div>
             <div class="acc-content">
                 <p>Ativacao nao substitui logica. Ela entra quando o casal ja revelou o que quer viver e o que esta perdendo. Emocao boa coloca pele no argumento.</p>
+            </div>
+        </div>
+        <div class="acc-item">
+            <div class="acc-header"><h4>Scripts literais de ativacao</h4><span>+</span></div>
+            <div class="acc-content">
+                <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button><p>"Se isso continuar do mesmo jeito, o custo para voces nao fica so no dinheiro. Fica tambem na energia que a rotina consome e no quanto essas ferias deixam de ser o que poderiam ser."</p></div>
+                <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button><p>"Quando voces imaginam esse tempo mais organizado, a mudanca nao fica so na viagem. Fica no clima da familia inteira."</p></div>
             </div>
         </div>
         <div class="acc-item">
@@ -1152,6 +1169,25 @@
             </div>
         </div>
         <div class="acc-item">
+            <div class="acc-header"><h4>Scripts literais de objecoes</h4><span>+</span></div>
+            <div class="acc-content">
+                <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button><p>"Quando voces falam em pensar, eu nao quero responder coisa errada. O que exatamente ainda precisa ficar seguro para voces?"</p></div>
+                <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button><p>"Se essa parte estivesse clara, a analise de voces mudaria ou a trava principal ainda seria outra?"</p></div>
+                <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button><p>"Caro comparado a que referencia exatamente?"</p></div>
+            </div>
+        </div>
+        <div class="acc-item">
+            <div class="acc-header"><h4>Roleplays de objecao</h4><span>+</span></div>
+            <div class="acc-content">
+                <ul>
+                    <li><strong>Caro:</strong> valor baixo percebido versus capacidade real.</li>
+                    <li><strong>Vou pensar:</strong> educacao, medo ou desalinhamento do casal.</li>
+                    <li><strong>Prefiro hotel:</strong> comparacao rasa versus preferencia real.</li>
+                    <li><strong>Medo de me prender:</strong> falta de autonomia ou falta de compreensao.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="acc-item">
             <div class="acc-header"><h4>Quiz avancado do modulo</h4><span>+</span></div>
             <div class="acc-content">
                 <ul>
@@ -1260,6 +1296,16 @@
             <li>Converter 20 caracteristicas do produto em beneficios reais para casal e familia.</li>
             <li>Criar 10 analogias simples para previsibilidade, descanso, tempo e custo invisivel.</li>
             <li>Reescrever falas mecanicas ate elas soarem humanas e diretas.</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h3>Scripts que merecem repeticao</h3>
+        <ul>
+            <li>"Na pratica isso significa..."</li>
+            <li>"O ganho real aqui e..."</li>
+            <li>"Antes do numero, vale alinhar a comparacao."</li>
+            <li>"Casais com rotina parecida percebem que..."</li>
+            <li>"A diferenca nao esta so em viajar..."</li>
         </ul>
     </div>
     <div class="card">
@@ -1604,6 +1650,17 @@ const quizData=[
   {module:'Warm-up',type:'Casal',difficulty:'alta',context:'A mulher fala do desgaste da rotina; o homem confirma, mas sempre puxa a conversa para numero.',question:'Qual e a melhor leitura?',A:'O homem nao quer ouvir nada emocional.',B:'Existe uma divisao de lente: ela verbaliza impacto vivido e ele busca proteger decisao pela comparacao financeira.',C:'O homem e o unico decisor.',D:'E melhor ignorar a fala dela e seguir pela racionalidade.',correct:'B',why:'B preserva os dois mapas mentais sem reduzir a mesa a estereotipo ou abandono de um lado.',wrongWhy:{A:'Leitura simplista.',C:'Sem base suficiente.',D:'Perderia metade do valor.'}},
   {module:'Rapport',type:'Melhor proxima fala',difficulty:'alta',context:'O casal esta educado, mas ainda em postura de visitante e nao de conversa.',question:'Qual fala muda melhor esse estado?',A:'Vou explicar como tudo funciona.',B:'Antes de eu te mostrar qualquer coisa, me ajuda a entender uma: quando voces saem para uma viagem realmente boa, o que faz voces sentirem que valeu a pena de verdade?',C:'Sejam bem-vindos ao nosso produto.',D:'Eu trabalho com isso ha muito tempo.',correct:'B',why:'B desloca o casal de visitante para participante da conversa.',wrongWhy:{A:'Explica cedo.',C:'Produto cedo demais.',D:'Autopromocao antes de contexto.'}},
   {module:'Objecoes',type:'Valor antes do preco',difficulty:'alta',context:'O cliente diz "nao sei se vamos usar tanto".',question:'Qual resposta protege melhor valor?',A:'Vai usar sim, pode confiar.',B:'Faz sentido levantar isso. O ponto principal para voce e uso real, flexibilidade ou medo de pagar por algo que depois nao encaixe?',C:'Quase todo mundo usa mais do que imagina.',D:'Se usar duas vezes ja vale.',correct:'B',why:'B abre a inseguranca real em vez de brigar com a fala do cliente.',wrongWhy:{A:'Afirma sem base.',C:'Prova social vaga.',D:'Tenta resolver na calculadora cedo demais.'}},
+  {module:'Mesa',type:'Roleplay',difficulty:'alta',context:'Casal frio aceita sentar, mas um dos dois claramente vai porque o outro quis.',question:'Qual fala prepara melhor a passagem?',A:'Agora e com ele, vamos la.',B:'Quero fazer essa transicao do jeito certo para voces nao sentirem que a conversa mudou de trilho.',C:'Ele vai te explicar melhor a parte final.',D:'Chegou a hora da decisao.',correct:'B',why:'B protege a percepcao da passagem e reduz resistencia silenciosa.',wrongWhy:{A:'Mecanica demais.',C:'Quebra continuidade e cria hierarquia.',D:'Pressiona cedo.'}},
+  {module:'Ativacao',type:'Script',difficulty:'alta',context:'Casal com filhos fala que o problema e sempre falta de tempo e cansaco.',question:'Qual frase ativa melhor?',A:'Filho cresce rapido, entao decidam logo.',B:'Quando voces conseguem organizar isso melhor, o ganho nao fica so na viagem; fica no jeito como a familia vive esse tempo junto.',C:'Quem ama os filhos faz esse tipo de movimento.',D:'Isso e sobre emocao pura.',correct:'B',why:'B ativa valor real sem manipular.',wrongWhy:{A:'Pressao barata.',C:'Manipulativa.',D:'Rotula e empobrece.'}},
+  {module:'Objecoes',type:'Roleplay',difficulty:'muito alta',context:'A mulher gosta da proposta, o homem diz "prefiro hotel".',question:'Qual proxima fala e melhor?',A:'Hotel nao se compara a isso.',B:'Quando voce fala em hotel, o que pesa mais nessa preferencia: liberdade, simplicidade ou receio de assumir algo que ainda nao ficou claro?',C:'Mas ela gostou, entao vamos seguir.',D:'Quase todo mundo fala isso no inicio.',correct:'B',why:'B abre a objecao real sem quebrar a dinamica do casal.',wrongWhy:{A:'Defensiva.',C:'Cria ruptura entre os dois.',D:'Desindividualiza o cliente.'}},
+  {module:'Arsenal',type:'Script',difficulty:'alta',context:'O casal entendeu o produto, mas ainda nao sentiu o impacto.',question:'Qual frase traduz melhor beneficio?',A:'Tem muita vantagem envolvida.',B:'Na pratica, isso significa menos improviso, mais previsibilidade e melhor uso do tempo de voces.',C:'E uma das melhores estruturas do mercado.',D:'Depois, no uso, voces percebem a diferenca.',correct:'B',why:'B traduz recurso em ganho vivido.',wrongWhy:{A:'Abstrata.',C:'Mais status que impacto.',D:'Adia demais a clareza.'}},
+  {module:'Finalizacao',type:'Roleplay',difficulty:'muito alta',context:'O casal concorda com quase tudo, mas volta para um detalhe pequeno antes da decisao.',question:'Qual leitura e melhor?',A:'Estao enrolando e precisam de pressao.',B:'O detalhe pequeno pode estar servindo de ponte para uma inseguranca maior que ainda nao foi nomeada.',C:'Ja era para ter fechado.',D:'O erro foi mostrar a tabela.',correct:'B',why:'B preserva fineza no fechamento e evita atropelar uma trava ainda viva.',wrongWhy:{A:'Pressiona em cima de sinal util.',C:'Julgamento em vez de leitura.',D:'Pode nao ter relacao direta.'}},
+  {module:'Rapport',type:'Script',difficulty:'alta',context:'O casal esta simpatico, mas no automatico.',question:'Qual frase rompe melhor a superficialidade?',A:'Vocês sao um casal muito legal.',B:'Quero te fazer uma pergunta mais honesta: quando uma viagem realmente valeu a pena para voces, o que aconteceu ali que foi diferente?',C:'Vou te mostrar primeiro como funciona.',D:'Acho que voces gostam de conforto, certo?',correct:'B',why:'B leva o casal do social para o significativo.',wrongWhy:{A:'Elogio facil.',C:'Explica cedo.',D:'Presume criterio.'}},
+  {module:'Warm-up',type:'Script',difficulty:'alta',context:'O casal diz que "nunca encaixa".',question:'Qual pergunta trabalha melhor impacto?',A:'Quem tem a agenda mais dificil?',B:'Quando isso nao encaixa, o que normalmente acontece com a qualidade da viagem de voces?',C:'Vocês trabalham demais?',D:'Entao o problema e tempo.',correct:'B',why:'B sai do fato e entra na consequencia real.',wrongWhy:{A:'Pode ser util depois, mas ainda e superficie.',C:'Pergunta administrativa.',D:'Fecha a leitura cedo demais.'}},
+  {module:'Pergunta com Venda',type:'Script',difficulty:'muito alta',context:'O casal ja reconheceu desgaste com improviso.',question:'Qual pergunta com venda esta melhor calibrada?',A:'Entao faz sentido fechar isso hoje?',B:'Se continuar assim, o que voces sentem que vai continuar se repetindo: cansaco, gasto mal distribuido ou ferias abaixo do que poderiam viver?',C:'Voces sabem que isso esta errado, certo?',D:'Querem que eu mostre a melhor opcao?',correct:'B',why:'B trabalha custo da inercia sem acusar e sem puxar fechamento cedo.',wrongWhy:{A:'Fechamento precoce.',C:'Acusatoria.',D:'Curta demais para o momento.'}},
+  {module:'Tabela',type:'Roleplay',difficulty:'alta',context:'Ao ver os numeros, o casal fica em silencio.',question:'Qual fala protege melhor a leitura?',A:'Viu? Nao e tao caro.',B:'Antes de eu interpretar esse silencio do meu jeito, me ajuda a entender o que mais pesou nessa leitura agora.',C:'Se eu parcelar melhor, ajuda?',D:'Vamos para a promocao entao.',correct:'B',why:'B abre leitura sem invadir e sem se defender.',wrongWhy:{A:'Minimiza a percepcao do cliente.',C:'Vai cedo para concessao.',D:'Promocao como fuga.'}},
+  {module:'Promocao',type:'Script',difficulty:'alta',context:'Valor ja esta bem construído e o casal esta ponderando seriamente.',question:'Qual uso de promocao fica mais limpo?',A:'Essa chance nao volta.',B:'Existe uma condicao melhor hoje e eu te trago isso agora porque a analise de voces ja esta madura para comparar sem confundir pressao com oportunidade.',C:'Se sair agora perde tudo.',D:'Se eu melhorar, fecham?',correct:'B',why:'B ancora a urgencia em criterio e maturidade.',wrongWhy:{A:'Absolutiza sem base.',C:'Ameaça.',D:'Negociacao cedo demais.'}},
+  {module:'Arsenal',type:'Roleplay',difficulty:'muito alta',context:'Casal racional quer objetividade e torce o nariz para linguagem emocional.',question:'Qual resposta usa melhor o arsenal?',A:'Entao vamos tirar a emocao da conversa.',B:'Perfeito. Entao vamos por criterio: o que voces estao comparando hoje e uma viagem isolada ou uma forma mais organizada de viver ferias ao longo do tempo?',C:'Mesmo os racionais compram por emocao.',D:'Entao o preco e o que importa.',correct:'B',why:'B respeita o perfil e ainda amplia a lente de comparacao.',wrongWhy:{A:'Abre mao de valor humano sem necessidade.',C:'Professoral e pouco util.',D:'Reduz demais a conversa.'}},
 ];
 let quizIndex=0;
 let quizScore=0;
