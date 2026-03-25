@@ -52,6 +52,15 @@
         .badge-fechador{background:var(--success);color:var(--white)}
         .card{background:var(--black-light);border:1px solid var(--black-lighter);border-radius:10px;padding:14px;margin-bottom:14px}
         .card-gold{border-color:var(--gold-dark);background:linear-gradient(135deg,rgba(212,175,55,.1),var(--black))}
+        .card-quick{border-color:rgba(52,152,219,.45);background:linear-gradient(135deg,rgba(52,152,219,.10),var(--black-light))}
+        .micro-label{display:inline-block;font-size:9px;text-transform:uppercase;letter-spacing:1.2px;color:var(--info);margin-bottom:8px}
+        .quick-grid{display:grid;grid-template-columns:1fr;gap:10px;margin:12px 0 16px}
+        .quick-pill{background:var(--black);border:1px solid var(--black-lighter);border-radius:8px;padding:12px}
+        .quick-pill strong{display:block;color:var(--gold);font-size:11px;margin-bottom:4px}
+        .quick-pill span{display:block;color:var(--gray-light);font-size:12px}
+        .section-anchor-nav{display:grid;grid-template-columns:1fr;gap:8px;margin:14px 0 18px}
+        .anchor-chip{background:var(--black);border:1px solid var(--black-lighter);border-radius:999px;padding:10px 12px;color:var(--gray-light);font-size:12px}
+        .anchor-chip strong{color:var(--white)}
         .alert{padding:12px;border-radius:8px;margin-bottom:14px;display:flex;gap:8px;align-items:flex-start;font-size:13px}
         .alert-gold{background:rgba(212,175,55,.15);border-left:4px solid var(--gold)}
         .alert-danger{background:rgba(231,76,60,.15);border-left:4px solid var(--danger)}
@@ -130,7 +139,7 @@
         .toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--black-light);border:1px solid var(--gold);color:var(--white);padding:10px 20px;border-radius:8px;font-size:13px;z-index:1002;opacity:0;transition:all .3s;white-space:nowrap}
         .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
         #menuToggle{position:fixed;bottom:20px;right:20px;width:60px;height:60px;background:var(--gold);border:none;border-radius:50%;z-index:1001;font-size:24px;box-shadow:0 4px 20px rgba(212,175,55,.5);display:flex;align-items:center;justify-content:center;touch-action:manipulation}
-        @media(min-width:901px){.sidebar{transform:translateX(0)}.sidebar-overlay{display:none!important}.main{margin-left:280px;padding:40px;max-width:960px}.comparison,.calc-row{grid-template-columns:1fr 1fr}#menuToggle{display:none}.progress-global{left:280px}}
+        @media(min-width:901px){.sidebar{transform:translateX(0)}.sidebar-overlay{display:none!important}.main{margin-left:280px;padding:40px;max-width:960px}.comparison,.calc-row,.quick-grid,.section-anchor-nav{grid-template-columns:1fr 1fr}#menuToggle{display:none}.progress-global{left:280px}}
     </style>
 </head>
 <body>
@@ -156,6 +165,15 @@
     <span class="badge badge-gold">Academia de Alta Performance</span>
     <h1>Treinamento de Vendas Your Vacation</h1>
     <p class="lead">Treinamento standalone para consultor e fechador com foco em multipropriedade, leitura de casal, valor antes do preco, passagem de mesa e objecoes.</p>
+    <div class="card card-quick">
+        <div class="micro-label">Rotas Rapidas</div>
+        <div class="quick-grid">
+            <div class="quick-pill"><strong>Estudar base</strong><span>Mentalidade, Rapport, Warm-up e Pergunta com Venda.</span></div>
+            <div class="quick-pill"><strong>Ir para o campo</strong><span>Checklist, Quiz e Notas primeiro.</span></div>
+            <div class="quick-pill"><strong>Travou no inicio</strong><span>Volte para Abertura, Rapport e Warm-up.</span></div>
+            <div class="quick-pill"><strong>Travou no fim</strong><span>Volte para Mesa, Objecoes e Finalizacao.</span></div>
+        </div>
+    </div>
     <div class="card card-gold">
         <h3>O que entrou nesta versao</h3>
         <ul>
@@ -379,6 +397,10 @@
     <div class="section-progress"><div class="section-progress-fill"></div></div>
     <span class="badge badge-consultor">Prioridade 2</span>
     <h1>Warm-up, Diagnostico e FORMI</h1>
+    <div class="section-anchor-nav">
+        <div class="anchor-chip"><strong>Leia primeiro:</strong> frase de impacto, checklist e palavras que pedem aprofundamento.</div>
+        <div class="anchor-chip"><strong>Use no campo:</strong> drills, sinais de diagnostico real e aplicacao consultor x fechador.</div>
+    </div>
     <p class="lead">Quem entende antes de oferecer precisa argumentar menos depois. Warm-up bom prepara o casal para abrir contexto, problema, impacto e prioridade.</p>
     <div class="card card-gold">
         <h3>Frase de impacto</h3>
@@ -987,6 +1009,10 @@
     <div class="section-progress"><div class="section-progress-fill"></div></div>
     <span class="badge badge-consultor">Prioridade 4</span>
     <h1>Mesa e Passagem</h1>
+    <div class="section-anchor-nav">
+        <div class="anchor-chip"><strong>Leia primeiro:</strong> sinais de passagem forte e protocolo de passagem limpa.</div>
+        <div class="anchor-chip"><strong>Use no campo:</strong> briefing bom, microchecagem e quando ainda nao passar.</div>
+    </div>
     <p class="lead">Transicao ruim mata venda boa. Passagem nao e abandono; e transferencia de confianca com contexto.</p>
     <div class="card card-gold">
         <h3>Frase de impacto</h3>
@@ -2729,6 +2755,10 @@
     <div class="section-progress"><div class="section-progress-fill"></div></div>
     <span class="badge badge-gold">Quiz de Alto Nivel</span>
     <h1>Quiz para Consultor que Pensa</h1>
+    <div class="section-anchor-nav">
+        <div class="anchor-chip"><strong>Objetivo:</strong> escolher a melhor resposta, nao a mais brilhante.</div>
+        <div class="anchor-chip"><strong>Se travar:</strong> volte para a etapa do modulo, nao so para a alternativa.</div>
+    </div>
     <p class="lead">Alternativas plausiveis. Erro sutil. Foco em leitura de contexto, timing, tom, conducao, casal e transicao.</p>
     <div class="quiz-card">
         <div class="quiz-question" id="quizQuestion">Carregando pergunta...</div>
@@ -2916,6 +2946,10 @@
     <div class="section-progress"><div class="section-progress-fill"></div></div>
     <span class="badge badge-gold">Execucao</span>
     <h1>Checklist Diario</h1>
+    <div class="section-anchor-nav">
+        <div class="anchor-chip"><strong>Antes do campo:</strong> marque o minimo que nao pode falhar.</div>
+        <div class="anchor-chip"><strong>Depois do campo:</strong> revise o dia ruim, o dia bom e a prioridade de amanha.</div>
+    </div>
     <p class="lead">Marque o basico que precisa acontecer para a conversa sair do improviso e entrar em metodo.</p>
     <div class="checklist" id="dailyChecklist">
         <div class="check-item" data-check="c1"><div class="check-box"></div><span>Abri sem atropelar e com contato nos dois.</span></div>
@@ -3106,6 +3140,10 @@
     <div class="section-progress"><div class="section-progress-fill"></div></div>
     <span class="badge badge-gold">Memoria de Campo</span>
     <h1>Notas</h1>
+    <div class="section-anchor-nav">
+        <div class="anchor-chip"><strong>Anote:</strong> perguntas fortes, objecoes reais, passagens limpas e frases mecanicas.</div>
+        <div class="anchor-chip"><strong>Corte:</strong> tudo que ficou bonito no papel e ruim na mesa.</div>
+    </div>
     <p class="lead">Anote padroes reais: perguntas que funcionaram, objecoes que travaram e leituras de casal que mudaram o jogo.</p>
     <div class="notes-box">
         <div class="notes-title">Suas anotacoes</div>
