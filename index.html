@@ -147,7 +147,9 @@
         .speech-lines{display:grid;gap:8px;margin-top:12px}
         .speech-line{padding:10px 12px;background:var(--black);border-left:3px solid var(--gold);border-radius:6px;font-size:12px;color:var(--gray-light)}
         .speech-line strong{color:var(--white)}
-        #menuToggle{position:fixed;bottom:20px;right:20px;width:60px;height:60px;background:var(--gold);border:none;border-radius:50%;z-index:1001;font-size:24px;box-shadow:0 4px 20px rgba(212,175,55,.5);display:flex;align-items:center;justify-content:center;touch-action:manipulation}
+        #menuToggle,#topButton{position:fixed;width:60px;height:60px;background:var(--gold);border:none;border-radius:50%;z-index:1001;font-size:24px;box-shadow:0 4px 20px rgba(212,175,55,.5);display:flex;align-items:center;justify-content:center;touch-action:manipulation}
+        #menuToggle{bottom:20px;right:20px}
+        #topButton{bottom:92px;right:20px;font-size:20px}
         @media(min-width:901px){.sidebar{transform:translateX(0)}.sidebar-overlay{display:none!important}.main{margin-left:280px;padding:40px;max-width:960px}.comparison,.calc-row,.quick-grid,.section-anchor-nav,.guide-strip{grid-template-columns:1fr 1fr}#menuToggle{display:none}.progress-global{left:280px}}
     </style>
 </head>
@@ -168,6 +170,7 @@
     <div class="nav-section"><div class="nav-title">Ferramentas</div><div class="nav-item" data-section="calculadora"><span>Calculadora</span><span class="fav-star" data-fav="calculadora">&#9734;</span></div><div class="nav-item" data-section="treino"><span>Quiz</span><span class="fav-star" data-fav="treino">&#9734;</span></div><div class="nav-item" data-section="checklist"><span>Checklist</span><span class="fav-star" data-fav="checklist">&#9734;</span></div><div class="nav-item" data-section="notas"><span>Notas</span><span class="fav-star" data-fav="notas">&#9734;</span></div></div>
 </nav>
 <button type="button" id="menuToggle">=</button>
+<button type="button" id="topButton" onclick="showSection('intro')" title="Voltar ao inicio">^</button>
 <main class="main">
 <section class="section active" id="intro" data-title="Introducao" data-keywords="inicio treinamento overview">
     <div class="section-progress"><div class="section-progress-fill"></div></div>
@@ -206,6 +209,7 @@
             <button class="btn" onclick="showSection('checklist')">Checklist</button>
             <button class="btn" onclick="showSection('notas')">Notas</button>
             <button class="btn" onclick="showSection('mesa')">Mesa</button>
+            <button class="btn" id="resumeSectionBtn" style="display:none">Retomar ultima secao</button>
         </div>
     </div>
     <div class="card">
@@ -3981,6 +3985,7 @@ function showToast(message){
 }
 function showSection(id){
   currentSection=id;
+  localStorage.setItem('yvLastSection',id);
   sections.forEach(section=>section.classList.toggle('active',section.id===id));
   sections.forEach(section=>{
     const fill=section.querySelector('.section-progress-fill');
@@ -4234,7 +4239,13 @@ document.getElementById('nextQuizBtn').addEventListener('click',()=>{
   }
 });
 renderFavorites();
-showSection('intro');
+const resumeSectionBtn=document.getElementById('resumeSectionBtn');
+const lastSection=localStorage.getItem('yvLastSection');
+if(resumeSectionBtn&&lastSection&&lastSection!=='intro'&&sections.some(section=>section.id===lastSection)){
+  resumeSectionBtn.style.display='inline-flex';
+  resumeSectionBtn.addEventListener('click',()=>showSection(lastSection));
+}
+showSection(lastSection&&sections.some(section=>section.id===lastSection)?lastSection:'intro');
 loadQuiz();
 </script>
 </body>
