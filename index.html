@@ -138,8 +138,17 @@
         .btn{background:var(--gold);color:var(--black);border:none;padding:14px 18px;border-radius:6px;font-weight:600;font-size:14px;margin-top:8px;width:100%}
         .toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--black-light);border:1px solid var(--gold);color:var(--white);padding:10px 20px;border-radius:8px;font-size:13px;z-index:1002;opacity:0;transition:all .3s;white-space:nowrap}
         .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+        .guide-strip{display:grid;grid-template-columns:1fr;gap:10px;margin:14px 0}
+        .guide-chip{padding:12px 14px;border:1px solid var(--black-lighter);background:rgba(212,175,55,.08);border-radius:10px}
+        .guide-chip strong{display:block;color:var(--gold);font-size:11px;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+        .guide-chip span{display:block;color:var(--gray-light);font-size:12px}
+        .gold-tag{display:inline-flex;align-items:center;gap:6px;font-size:10px;text-transform:uppercase;letter-spacing:1.4px;color:var(--gold);margin-bottom:8px}
+        .gold-tag::before{content:'■';font-size:8px}
+        .speech-lines{display:grid;gap:8px;margin-top:12px}
+        .speech-line{padding:10px 12px;background:var(--black);border-left:3px solid var(--gold);border-radius:6px;font-size:12px;color:var(--gray-light)}
+        .speech-line strong{color:var(--white)}
         #menuToggle{position:fixed;bottom:20px;right:20px;width:60px;height:60px;background:var(--gold);border:none;border-radius:50%;z-index:1001;font-size:24px;box-shadow:0 4px 20px rgba(212,175,55,.5);display:flex;align-items:center;justify-content:center;touch-action:manipulation}
-        @media(min-width:901px){.sidebar{transform:translateX(0)}.sidebar-overlay{display:none!important}.main{margin-left:280px;padding:40px;max-width:960px}.comparison,.calc-row,.quick-grid,.section-anchor-nav{grid-template-columns:1fr 1fr}#menuToggle{display:none}.progress-global{left:280px}}
+        @media(min-width:901px){.sidebar{transform:translateX(0)}.sidebar-overlay{display:none!important}.main{margin-left:280px;padding:40px;max-width:960px}.comparison,.calc-row,.quick-grid,.section-anchor-nav,.guide-strip{grid-template-columns:1fr 1fr}#menuToggle{display:none}.progress-global{left:280px}}
     </style>
 </head>
 <body>
@@ -172,7 +181,13 @@
             <div class="quick-pill"><strong>Ir para o campo</strong><span>Checklist, Quiz e Notas primeiro.</span></div>
             <div class="quick-pill"><strong>Travou no inicio</strong><span>Volte para Abertura, Rapport e Warm-up.</span></div>
             <div class="quick-pill"><strong>Travou no fim</strong><span>Volte para Mesa, Objecoes e Finalizacao.</span></div>
+            <div class="quick-pill"><strong>Novato</strong><span>Comece por Abertura e grave o speech inicial.</span></div>
+            <div class="quick-pill"><strong>Ouro operacional</strong><span>Leia os cards com regra, protocolo e sinais primeiro.</span></div>
         </div>
+    </div>
+    <div class="guide-strip">
+        <div class="guide-chip"><strong>Aprender</strong><span>Use os modulos para entender principio, exemplo bom e erro invisivel.</span></div>
+        <div class="guide-chip"><strong>Aplicar</strong><span>Use Checklist, Quiz e Notas para levar um gargalo por dia para o campo.</span></div>
     </div>
     <div class="card card-gold">
         <h3>O que entrou nesta versao</h3>
@@ -277,10 +292,42 @@
     <div class="section-progress"><div class="section-progress-fill"></div></div>
     <span class="badge badge-consultor">Consultor | Etapa 1</span>
     <h1>Abertura</h1>
+    <div class="section-anchor-nav">
+        <div class="anchor-chip"><strong>Novato:</strong> decore o speech curto e grave ate soar humano.</div>
+        <div class="anchor-chip"><strong>Campo:</strong> organize sensacao, nao tente vender em 20 segundos.</div>
+    </div>
     <p class="lead">Os primeiros segundos definem se o casal te segue ou apenas te tolera.</p>
+    <div class="card">
+        <div class="gold-tag">Ouro operacional da abertura</div>
+        <ul>
+            <li>Olho nos dois antes da primeira promessa.</li>
+            <li>Tom firme, leve e respiravel.</li>
+            <li>Prometa criterio, nao pitch.</li>
+            <li>Se travar, desacelere antes de improvisar.</li>
+        </ul>
+    </div>
     <div class="card"><ul><li>Contato visual com os dois</li><li>Apresente-se como consultor, nao como empurrador</li><li>Caminhe ao lado, nao na frente</li><li>Tom firme, leve e organizado</li></ul></div>
     <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button><p>"Sejam bem-vindos. Meu nome e [NOME] e eu vou conduzir a experiencia com voces. Meu papel aqui e mostrar como familias com rotina parecida com a de voces estao organizando melhor o tempo de ferias e a qualidade desse uso."</p></div>
     <div class="accordion">
+        <div class="acc-item open">
+            <div class="acc-header"><h4>Speech inicial do novato | Apostila Anyelle</h4><span>+</span></div>
+            <div class="acc-content">
+                <p><strong>Objetivo:</strong> dar ao novato uma fala-base que organize presenca, autoridade e ritmo sem soar decorado.</p>
+                <div class="script-box"><button class="copy-btn" onclick="copyScript(this)">Copiar</button><p>"Sejam bem-vindos. Eu sou [NOME] e vou conduzir essa experiencia com voces. Meu papel aqui e ajudar voces a compararem a coisa certa, no ritmo de voces, mas com clareza."</p></div>
+                <div class="speech-lines">
+                    <div class="speech-line"><strong>"Sejam bem-vindos"</strong><br>abre calor sem exagero.</div>
+                    <div class="speech-line"><strong>"Eu sou [NOME]"</strong><br>se apresenta como pessoa, nao como funcao robotica.</div>
+                    <div class="speech-line"><strong>"vou conduzir essa experiencia"</strong><br>da comando limpo sem parecer pressao.</div>
+                    <div class="speech-line"><strong>"compararem a coisa certa"</strong><br>promete criterio antes de produto e preco.</div>
+                </div>
+                <ul>
+                    <li><strong>Casal frio:</strong> corte volume e entre mais leve.</li>
+                    <li><strong>Casal engajado:</strong> mantenha a mesma estrutura, mas com mais sorriso e menos formalidade.</li>
+                    <li><strong>Se travou:</strong> volte para "meu papel aqui e ajudar voces a comparar a coisa certa".</li>
+                    <li><strong>Erro invisivel:</strong> decorar as palavras e esquecer o corpo.</li>
+                </ul>
+            </div>
+        </div>
         <div class="acc-item">
             <div class="acc-header"><h4>Recepcao e primeira impressao</h4><span>+</span></div>
             <div class="acc-content">
@@ -330,6 +377,24 @@
         </div>
     </div>
     <div class="flashcard"><div class="fc-inner"><div class="fc-front"><div class="fc-label">Flashcard</div><div class="fc-text">Abertura boa organiza sensacao antes de organizar conteudo.</div><div class="fc-hint">Toque para virar</div></div><div class="fc-back"><div class="fc-label">Aplicacao</div><div class="fc-text">Se o casal relaxa com sua presenca, ele te concede atencao para o resto do fluxo.</div></div></div></div>
+    <div class="card">
+        <h3>Drill de gravacao do novato</h3>
+        <ul>
+            <li><strong>Passo 1:</strong> grave 5 vezes o speech curto sem correr.</li>
+            <li><strong>Passo 2:</strong> ouca e corte o que soar vendedor demais.</li>
+            <li><strong>Passo 3:</strong> grave uma versao para casal frio e outra para casal engajado.</li>
+            <li><strong>Passo 4:</strong> teste ao vivo sem tentar embelezar.</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h3>Checklist de autoescuta</h3>
+        <ul>
+            <li>Minha voz esta respiravel ou acelerada?</li>
+            <li>Eu prometi criterio ou prometi produto?</li>
+            <li>Eu pareci seguro ou decorado?</li>
+            <li>Meu corpo acompanhou minha fala ou me entregou ansiedade?</li>
+        </ul>
+    </div>
     <div class="card">
         <h3>Sinais de que funcionou x falhou</h3>
         <ul>
@@ -2437,7 +2502,15 @@
     <div class="section-progress"><div class="section-progress-fill"></div></div>
     <span class="badge badge-consultor">Prioridade 6</span>
     <h1>Arsenal e Tecnicas</h1>
+    <div class="section-anchor-nav">
+        <div class="anchor-chip"><strong>Leia primeiro:</strong> beneficio, analogia e valor antes do preco.</div>
+        <div class="anchor-chip"><strong>Use no campo:</strong> leve uma tecnica por dia, nao cinco.</div>
+    </div>
     <p class="lead">Tecnica boa organiza presenca. Tecnica ruim parece fantasia de controle. Aqui entram beneficio, analogia, valor antes do preco e prova social etica.</p>
+    <div class="guide-strip">
+        <div class="guide-chip"><strong>Abrir e aprofundar</strong><span>rapport, papagaio, detetive de palavras, perguntas de impacto.</span></div>
+        <div class="guide-chip"><strong>Comparar e fechar</strong><span>beneficio, analogia, ancoragem, prova social etica e pedido limpo.</span></div>
+    </div>
     <div class="accordion">
         <div class="acc-item open">
             <div class="acc-header"><h4>Beneficio x caracteristica</h4><span>+</span></div>
@@ -2504,6 +2577,15 @@
                 </ul>
             </div>
         </div>
+    </div>
+    <div class="card">
+        <div class="gold-tag">Ouro operacional do arsenal</div>
+        <ul>
+            <li>Se a tecnica apareceu, provavelmente entrou demais.</li>
+            <li>Se o casal comparou melhor, a tecnica entrou bem.</li>
+            <li>Se a analogia ficou bonita e inutil, descarte.</li>
+            <li>Se a fala traduziu impacto vivido, guarde na biblioteca.</li>
+        </ul>
     </div>
     <div class="card">
         <h3>Frases proibidas</h3>
@@ -2803,6 +2885,15 @@
         </div>
     </div>
     <div class="card">
+        <div class="gold-tag">Ouro operacional do quiz</div>
+        <ul>
+            <li>O quiz serve para refinar julgamento, nao para subir ego.</li>
+            <li>Se duas respostas parecem boas, desempate por timing e leitura.</li>
+            <li>Se acertou e nao falaria no campo, ainda nao aprendeu.</li>
+            <li>Se errou, volte para a etapa da conversa, nao so para a alternativa.</li>
+        </ul>
+    </div>
+    <div class="card">
         <h3>Como ler seu erro depois da resposta</h3>
         <ul>
             <li><strong>Timing errado:</strong> a fala ate era boa, mas entrou cedo demais.</li>
@@ -2951,6 +3042,10 @@
         <div class="anchor-chip"><strong>Depois do campo:</strong> revise o dia ruim, o dia bom e a prioridade de amanha.</div>
     </div>
     <p class="lead">Marque o basico que precisa acontecer para a conversa sair do improviso e entrar em metodo.</p>
+    <div class="guide-strip">
+        <div class="guide-chip"><strong>Antes do campo</strong><span>use o checklist para nao esquecer o essencial.</span></div>
+        <div class="guide-chip"><strong>Depois do campo</strong><span>use o checklist para escolher um gargalo e um proximo passo.</span></div>
+    </div>
     <div class="checklist" id="dailyChecklist">
         <div class="check-item" data-check="c1"><div class="check-box"></div><span>Abri sem atropelar e com contato nos dois.</span></div>
         <div class="check-item" data-check="c2"><div class="check-box"></div><span>Fiz o casal falar antes de explicar.</span></div>
@@ -2973,6 +3068,15 @@
                 </ul>
             </div>
         </div>
+    </div>
+    <div class="card">
+        <div class="gold-tag">Ouro operacional do checklist</div>
+        <ul>
+            <li>Nao use para se culpar; use para localizar a etapa que vazou.</li>
+            <li>Nao leve dez correcoes para amanha; leve uma.</li>
+            <li>Se a mesa caiu no fim, revise o inicio antes de culpar a finalizacao.</li>
+            <li>Checklist bom encurta a distancia entre erro e correcao.</li>
+        </ul>
     </div>
     <div class="card">
         <h3>Se o dia foi ruim, revise nesta ordem</h3>
@@ -3145,10 +3249,23 @@
         <div class="anchor-chip"><strong>Corte:</strong> tudo que ficou bonito no papel e ruim na mesa.</div>
     </div>
     <p class="lead">Anote padroes reais: perguntas que funcionaram, objecoes que travaram e leituras de casal que mudaram o jogo.</p>
+    <div class="guide-strip">
+        <div class="guide-chip"><strong>Guarde</strong><span>o que abriu verdade, sustentou valor e limpou a passagem.</span></div>
+        <div class="guide-chip"><strong>Pode</strong><span>o que ficou bonito no papel e ruim na mesa.</span></div>
+    </div>
     <div class="notes-box">
         <div class="notes-title">Suas anotacoes</div>
         <textarea class="notes-textarea" id="notesArea" placeholder="Escreva aqui seus aprendizados de campo..."></textarea>
         <div class="notes-saved" id="notesSaved">Salvo</div>
+    </div>
+    <div class="card">
+        <div class="gold-tag">Ouro operacional das notas</div>
+        <ul>
+            <li>Frase boa sem contexto nao vira biblioteca.</li>
+            <li>Guarde fala literal do cliente, nao so sua interpretacao.</li>
+            <li>Anote o micro-sinal que precedeu a trava.</li>
+            <li>Toda boa nota precisa dizer: onde foi, por que funcionou e quando repetir.</li>
+        </ul>
     </div>
     <div class="card">
         <h3>O que anotar todo dia</h3>
